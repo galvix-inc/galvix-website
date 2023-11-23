@@ -6,7 +6,7 @@ import { Image } from 'astro:assets'
 const navigation = [
   { name: 'Resources', href: '#' },
   { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: 'https://www.google.com/' },
+  { name: 'Marketplace', href: '#' },
 ]
 
 export default function HeroSection() {
