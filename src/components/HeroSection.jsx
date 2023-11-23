@@ -21,7 +21,7 @@ export default function HeroSection() {
               <span className="sr-only">Galvix</span>
               <img
                 className="h-8 w-auto"
-                src="/images/galvix-logo-wide.jpg"
+                src="/images/galvix-logo.png"
                 alt=""
               />
             </a>
