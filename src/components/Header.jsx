@@ -3,7 +3,7 @@ import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Resources', href: '#' },
+  { name: 'Resources', href: '/resources' },
   { name: 'Features', href: '#' },
   { name: 'Marketplace', href: '#' },
 ]
