@@ -1,0 +1,22 @@
+---
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.astro';
+import Seo from '../components/Seo.astro';
+const {title, description, image, frontmatter, robots} = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+		<Seo {title} {description} url = {Astro.url} {image} {frontmatter} {robots}/>
+	</head>
+	<body>
+    <Header client:visible/>
+    <slot/>
+    <Footer/>
+  </body>
+</html>
