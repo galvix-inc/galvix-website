@@ -1,0 +1,9 @@
+---
+import ArticleListItem from "./ArticleListItem.astro";
+const {articles} = Astro.props;
+---
+<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+    {
+        articles.data && articles.data.length > 0 ? articles.data.map((article) => <ArticleListItem article={article} />): "No articles founds"
+    }
+</div>

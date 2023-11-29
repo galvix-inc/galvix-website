@@ -1,24 +1,43 @@
 ---
+import qs from 'qs';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ResourceListingItem from '../components/ResourceListingItem.astro';
+import ArticleList from '../components/ArticleList.astro';
 const pageTitle = "Resources";
-const allResources = await Astro.glob('./posts/*.md');
+
+let url = import.meta.env.STRAPI_URL + "/api/articles";
+const query = qs.stringify({
+  populate: {
+    featuredImage: {
+      fields: ["name", "width", "height", "url"],
+    },
+    author: {
+      populate: {
+        image: {
+          fields: ["name", "width", "height", "url"],
+        },
+      },
+    },
+    tags: {
+      populate: true,
+    },
+  },
+});
+//const allResources = await Astro.glob('./posts/*.md');
+const articles = await fetch(url + "?" + query).then((response) =>
+  response.json()
+);
+
+
+
 ---
 <BaseLayout title="Sales tax compliance resources by Galvix">
   <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl lg:max-w-4xl">
+      <div class="mx-auto max-w-2xl text-center">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Master sales tax compliance for your SaaS business</h2>
         <p class="mt-2 text-lg leading-8 text-gray-600">Get ahead of the sales tax game with Galvix’s resources - crafted by tax experts for SaaS finance leaders.</p>
-        <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
-          {allResources.map((resource) => <ResourceListingItem 
-            url = {resource.url}
-            title = {resource.frontmatter.title} 
-            pubDate = {resource.frontmatter.pubDate}
-            />
-          )}
-        </div>
       </div>
+      <ArticleList articles={articles}/>
     </div>
   </div>
 </BaseLayout>

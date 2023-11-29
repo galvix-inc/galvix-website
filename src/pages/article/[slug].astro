@@ -1,0 +1,43 @@
+---
+import qs from 'qs';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SingleArticle from '../../components/SingleArticle.astro';
+import HomepageCTA from '../../components/homepage/HomepageCTA.astro';
+
+export async function getStaticPaths() {
+  let url = import.meta.env.STRAPI_URL + "/api/articles";
+
+    const query = qs.stringify({
+    populate: {
+            featuredImage: {
+            fields: ["name", "width", "height", "url"],
+        },
+        author: {
+            populate: {
+                image: {
+                fields: ["name", "width", "height", "url"],
+                },
+            },
+        },
+        tags: {
+            populate: true,
+        },
+    },
+    });
+
+  const data = await fetch(url + "?" + query).then(response => response.json());
+  return data.data.map((article) => {
+    return {
+      params: { slug: article.attributes.slug },
+      props: { article },
+    };
+  });
+}
+
+const { article } = Astro.props;
+---
+<BaseLayout title={article.attributes.title}>
+    <SingleArticle article={article}/>
+    <HomepageCTA/>
+</BaseLayout>
+
