@@ -13,6 +13,7 @@ const {title, description, image, frontmatter, robots} = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
 		<Seo {title} {description} url = {Astro.url} {image} {frontmatter} {robots}/>
+		<link rel="sitemap" href="/sitemap-index.xml" />
 	</head>
 	<body>
     <Header client:visible/>
