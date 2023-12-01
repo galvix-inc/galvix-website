@@ -7,5 +7,11 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.galvix.com',
-  integrations: [tailwind(), react(), sitemap()]
+  integrations: [tailwind(), react(), sitemap()],
+  redirects: {
+    "/resources/[slug]": "/article/[slug]",
+    "/topic/[slug]": "/resources/",
+    "/type/[slug]": "/resources/",
+    "/free-nexus-study": "/request-demo"
+  }
 });
