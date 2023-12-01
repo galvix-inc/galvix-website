@@ -6,7 +6,7 @@ const {
   metaDescription,
   image,
   frontmatter,
-  robots,
+  norobots,
 } = Astro.props;
 ---
 
@@ -38,4 +38,4 @@ const {
 <meta name="twitter:image:alt" content={metaTitle ? metaTitle:siteData.title} />
 <meta name="twitter:domain" content={import.meta.env.SITE} />
 
-{robots && <meta name="robots" content="noindex, nofollow" />}
+{norobots && <meta name="robots" content="noindex, nofollow" />}
