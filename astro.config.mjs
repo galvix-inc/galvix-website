@@ -10,8 +10,6 @@ export default defineConfig({
   integrations: [tailwind(), react(), sitemap()],
   redirects: {
     "/resources/[slug]": "/article/[slug]",
-    "/topic/[slug]": "/resources/",
-    "/type/[slug]": "/resources/",
     "/free-nexus-study": "/request-demo"
   }
 });
