@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 ---
-<BaseLayout title={article.attributes.title} description={article.attributes.summary} image={article.attributes.featuredImage.data.attributes}>
+<BaseLayout title={article.attributes.title} metaTitle={article.attributes.metaTitle} metaDescription={article.attributes.metaDescription} image={article.attributes.featuredImage.data.attributes}>
     <SingleArticle article={article}/>
     <HomepageCTA/>
 </BaseLayout>

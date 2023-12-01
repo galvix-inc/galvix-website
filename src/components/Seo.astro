@@ -2,9 +2,8 @@
 import siteData from "../data/siteData.json";
 
 const {
-  title,
-  description,
-  url = Astro.url,
+  metaTitle,
+  metaDescription,
   image,
   frontmatter,
   robots,
@@ -12,15 +11,14 @@ const {
 ---
 
 <!-- SEO -->
-<link rel="canonical" href={url} />
-<title>{title ? title:siteData.title}</title>
-<meta name="description" content={description ? description:siteData.description} />
+<meta name="title" content={metaTitle ? metaTitle:siteData.title} />
+<meta name="description" content={metaDescription ? metaDescription:siteData.description} />
 
 <!-- Open Graph -->
 <meta property="og:site_name" content={siteData.site_name} />
-<meta property="og:title" content={title ? title:siteData.title} />
-<meta property="og:description" content={description ? description:siteData.description} />
-<meta property="og:url" content={url} />
+<meta property="og:title" content={metaTitle ? metaTitle:siteData.title} />
+<meta property="og:description" content={metaDescription ? metaDescription:siteData.description} />
+<meta property="og:url" content={Astro.url} />
 <meta property="og:image" content={image?.url || siteData.image.src} />
 <meta property="og:image:url" content={image?.url || siteData.image.src} />
 <meta
@@ -33,11 +31,11 @@ const {
 <meta property="og:image:alt" content={image?.alt || siteData.image.alt} />
 
 <!-- Twitter -->
-<meta name="twitter:title" content={title ? title:siteData.title} />
-<meta name="twitter:description" content={description ? description:siteData.description} />
+<meta name="twitter:title" content={metaTitle ? metaTitle:siteData.title} />
+<meta name="twitter:description" content={metaDescription ? metaDescription:siteData.description} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content={image?.url || siteData.image.src} />
-<meta name="twitter:image:alt" content={title ? title:siteData.title} />
+<meta name="twitter:image:alt" content={metaTitle ? metaTitle:siteData.title} />
 <meta name="twitter:domain" content={import.meta.env.SITE} />
 
 {robots && <meta name="robots" content="noindex, nofollow" />}

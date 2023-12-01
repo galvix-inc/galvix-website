@@ -2,7 +2,8 @@
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.astro';
 import Seo from '../components/Seo.astro';
-const {title, description, image, frontmatter, robots} = Astro.props;
+import siteData from "../data/siteData.json";
+const {title, metaTitle, metaDescription, image, frontmatter, robots} = Astro.props;
 ---
 
 <html lang="en">
@@ -12,8 +13,10 @@ const {title, description, image, frontmatter, robots} = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
-		<Seo {title} {description} url = {Astro.url} {image} {frontmatter} {robots}/>
 		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="canonical" href={Astro.url} />
+		<title>{title ? title:siteData.title}</title>
+		<Seo {metaTitle} {metaDescription} {image} {frontmatter} {robots}/>
 	</head>
 	<body>
     <Header client:visible/>
