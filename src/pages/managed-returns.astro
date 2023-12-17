@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/managed-returns/Hero.astro';
+import Problem from '../components/managed-returns/Problem.astro';
+import Solution from '../components/managed-returns/Solution.astro';
+import Steps from '../components/managed-returns/Steps.astro';
+import Features from '../components/managed-returns/Features.astro';
+import Support from '../components/managed-returns/Support.astro';
+import Pricing from '../components/managed-returns/Pricing.astro';
+import FAQ from '../components/managed-returns/FAQ.jsx';
+import CTA from '../components/managed-returns/CTA.astro';
+const pageTitle = "Automated Sales Tax Return Filing Service by Galvix";
+---
+<BaseLayout title={pageTitle} norobots>
+    <Hero/>
+    <Problem/>
+    <Solution/>
+    <Steps/>
+    <Features/>
+    <Support/>
+    <Pricing/>
+    <FAQ client:visible/>
+    <CTA/>
+</BaseLayout>

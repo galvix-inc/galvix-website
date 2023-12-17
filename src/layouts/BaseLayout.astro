@@ -31,7 +31,9 @@ const {title, metaTitle, metaDescription, image, frontmatter, norobots} = Astro.
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
     <Header client:visible/>
+	<main>
     <slot/>
+	</main>
     <Footer/>
   </body>
 </html>
