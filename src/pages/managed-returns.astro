@@ -10,8 +10,10 @@ import Pricing from '../components/managed-returns/Pricing.astro';
 import FAQ from '../components/managed-returns/FAQ.jsx';
 import CTA from '../components/managed-returns/CTA.astro';
 const pageTitle = "Automated Sales Tax Return Filing Service by Galvix";
+const metaTitle = "Fully automated sales tax return filing service for small businesses, by Galvix";
+const metaDescription = "Offload the high cost and hassle of returns preparation, filing, and remittance - with a 100% done-for-you service by Galvix.";
 ---
-<BaseLayout title={pageTitle} norobots>
+<BaseLayout title={pageTitle} metaTitle={metaTitle} metaDescription={metaDescription} norobots>
     <Hero/>
     <Problem/>
     <Solution/>
