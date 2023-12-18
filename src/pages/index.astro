@@ -1,18 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/homepage/Hero.astro'
-import Steps from '../components/homepage/Steps.astro'
-import ItsDifferent from '../components/homepage/ItsDifferent.astro'
-import HomepageCTA from '../components/homepage/HomepageCTA.astro'
-import Problem from '../components/homepage/Problem.astro'
-import Solution from '../components/homepage/Solution.astro'
-import Benefits from '../components/homepage/Benefits.astro'
+import Hero from '../components/managed-returns/Hero.astro';
+import Solution from '../components/managed-returns/Solution.astro';
+import Steps from '../components/managed-returns/Steps.astro';
+import Features from '../components/managed-returns/Features.astro';
+import Support from '../components/managed-returns/Support.astro';
+import Pricing from '../components/managed-returns/Pricing.astro';
+import FAQ from '../components/managed-returns/FAQ.jsx';
+import CTA from '../components/managed-returns/CTA.astro';
+const pageTitle = "Online Sales Tax Return Filing Service by Galvix";
+const metaTitle = "Online sales tax return filing service for small businesses, by Galvix";
+const metaDescription = "Offload the high cost and hassle of returns preparation, filing, and remittance - with a 100% done-for-you online sales tax compliance service by Galvix.";
 ---
-<BaseLayout>
-	<Hero/>
-	<Problem/>
-	<Solution/>
-	<Benefits/>
-	<Steps/>
-	<HomepageCTA/>
+<BaseLayout title={pageTitle} metaTitle={metaTitle} metaDescription={metaDescription}>
+    <Hero/>
+    <Steps/>
+    <Solution/>
+    <Features/>
+    <Support/>
+    <Pricing/>
+    <FAQ client:visible/>
+    <CTA/>
 </BaseLayout>

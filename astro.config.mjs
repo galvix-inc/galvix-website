@@ -8,7 +8,9 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: 'https://www.galvix.com',
   integrations: [tailwind(), react(), sitemap({
-    filter: (page) => page !== 'https://www.galvix.com/sandbox/'
+    filter: (page) => 
+      page !== 'https://www.galvix.com/sandbox/' && 
+      page !== 'https://www.galvix.com/index-saas/',
   })],
   redirects: {
     "/resources/[slug]": "/article/[slug]",
