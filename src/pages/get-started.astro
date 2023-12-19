@@ -6,6 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	  const form = document.getElementById('contact-form');
 	  form.addEventListener("submit", function(e) {
 		e.preventDefault();
+		mixpanel.track("Submitted Contact Form");
 		const data = new FormData(form);
 		const action = e.target.action;
 		const button = document.getElementById("submit-button");

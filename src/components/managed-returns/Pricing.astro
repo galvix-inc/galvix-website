@@ -1,3 +1,11 @@
+<script type="text/partytown">
+  mixpanel.track_links("#link-get-started-pricing-state-filing","Clicked Get Started", {
+    "section": "pricing-state-filing"
+  });
+  mixpanel.track_links("#link-get-started-pricing-state-registration","Clicked Get Started", {
+    "section": "pricing-state-registration"
+  });
+</script>
 <div id="pricing" class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-4xl px-6 lg:px-8">
       <div class="mx-auto max-w-5xl lg:text-center">
@@ -15,7 +23,7 @@
               <!-- Payment frequency, update based on frequency toggle state -->
               <span class="text-sm font-semibold leading-6 text-gray-600">per filing</span>
             </p>
-            <a href="/get-started" aria-describedby="tier-startup" class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500">Get Started</a>
+            <a href="/get-started" id="link-get-started-pricing-state-filing" aria-describedby="tier-startup" class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500">Get Started</a>
             <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600">
               <li class="flex gap-x-3">
                 <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -71,7 +79,7 @@
               <!-- Payment frequency, update based on frequency toggle state -->
               <span class="text-sm font-semibold leading-6 text-gray-600">per state</span>
             </p>
-            <a href="/get-started" aria-describedby="tier-startup" class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500">Get Started</a>
+            <a href="/get-started" id="link-get-started-pricing-state-registration" aria-describedby="tier-startup" class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500">Get Started</a>
             <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600">
               <li class="flex gap-x-3">
                 <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
