@@ -14,6 +14,7 @@ export default defineConfig({
   })],
   redirects: {
     "/resources/[slug]": "/article/[slug]",
-    "/free-nexus-study": "/request-demo"
+    "/free-nexus-study": "/get-started",
+    "/request-demo": "/get-started"
   }
 });
