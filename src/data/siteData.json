@@ -1,6 +1,6 @@
 {
     "site_name": "Galvix",
-    "title": "Online sales tax filing with real human support",
+    "title": "Galvix: Online Sales Tax Filing With Real Human Support",
     "description": "Galvix is an online sales tax filing service, purpose-built for small businesses. Offload the high cost and hassle of returns preparation, filing, and remittance - with a 100% done-for-you service.",
     "image": {
       "src": "/images/galvix-opengraph-preview-image.png",
@@ -9,4 +9,4 @@
       "width": 1200,
       "height": 600
     }
-  }
+}
