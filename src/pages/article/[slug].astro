@@ -2,7 +2,7 @@
 import qs from 'qs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SingleArticle from '../../components/SingleArticle.astro';
-import HomepageCTA from '../../components/homepage/HomepageCTA.astro';
+import ResourceCTA from '../../components/resources/ResourceCTA.astro';
 
 export async function getStaticPaths() {
   let url = import.meta.env.STRAPI_URL + "/api/articles";
@@ -38,6 +38,6 @@ const { article } = Astro.props;
 ---
 <BaseLayout title={article.attributes.title} metaTitle={article.attributes.metaTitle} metaDescription={article.attributes.metaDescription} image={article.attributes.featuredImage.data.attributes}>
     <SingleArticle article={article}/>
-    <HomepageCTA/>
+    <ResourceCTA/>
 </BaseLayout>
 
