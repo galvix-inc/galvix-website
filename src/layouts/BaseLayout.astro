@@ -3,7 +3,7 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.astro';
 import Seo from '../components/Seo.astro';
 import siteData from "../data/siteData.json";
-const {title, metaTitle, metaDescription, image, frontmatter, norobots} = Astro.props;
+const {title, metaTitle, metaDescription, image, frontmatter, norobots, landingpage} = Astro.props;
 const mixpanelToken = import.meta.env.MIXPANEL_TOKEN;
 ---
 
@@ -35,10 +35,10 @@ const mixpanelToken = import.meta.env.MIXPANEL_TOKEN;
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ2R3X7"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
-    <Header client:visible/>
+	{!landingpage && <Header client:visible/>}
 	<main>
     <slot/>
 	</main>
-    <Footer/>
+    <Footer {landingpage}/>
   </body>
 </html>
