@@ -1,0 +1,40 @@
+---
+const {
+    title,
+    description,
+    buttonLabel,
+    formId,
+    bgColor
+} = Astro.props;
+---
+<div class={`${bgColor && bgColor} sm:mx-auto sm:w-full sm:max-w-md sm:overflow-hidden sm:rounded-lg`}>
+    <div class="px-6 py-8 sm:px-10">
+      <p class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{title}</p>
+      <p class="text-s leading-5 mt-2 text-gray-500">{description}</p>
+      <div class="mt-6">
+        <form id={formId?formId:"contact-form"} data-netlify="true" action="/lp/thank-you" method="POST" class="space-y-6">
+          <div>
+            <label for="name" class="sr-only">Full name</label>
+            <input type="text" name="name" id="name" autocomplete="name" placeholder="Full name" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+          </div>
+
+          <div>
+            <label for="email" class="sr-only">Email</label>
+            <input type="text" name="email" id="email" autocomplete="email" placeholder="Email" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+          </div>
+
+          <div>
+            <label for="mobile" class="sr-only">Mobile number</label>
+            <input type="text" name="mobile" id="mobile" autocomplete="tel" placeholder="Mobile number" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+          </div>
+
+          <div>
+            <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">{buttonLabel ? buttonLabel:"Submit"}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class={`border-t-2 border-gray-200 ${bgColor && bgColor} px-6 py-6 sm:px-10`}>
+      <p class="text-xs leading-5 text-gray-500">We respect your <a href="/privacy-policy" class="font-medium text-gray-900 hover:underline">privacy</a>.</p>
+    </div>
+  </div>

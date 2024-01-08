@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
 <BaseLayout title="Get Started with Galvix">
 	<div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -10,8 +11,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		  <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Get started with the most reliable online sales tax compliance service, purpose-built for small businesses.</h2>
 		  <p class="mt-2 text-lg leading-8 text-gray-600">Spend fewer than five minutes a month on sales tax returns preparation and filing with our done-for-you service. We do the work, all you do is approve.</p>
 		</div>
-		<div class="pipedriveWebForms mx-auto mt-16 max-w-3xl sm:mt-20" data-pd-webforms="https://webforms.pipedrive.com/f/6UJqHFrjn6Aiygs8y6PeIeGMbwfRibmECsNPypzikaqtmSafovm2lM3ezlCvNTWIDh">
-			<script src="https://webforms.pipedrive.com/f/loader"></script>
-		</div>
+		<ContactForm formId="get-started" buttonLabel="Get Started"/>
 	</div>	
 </BaseLayout>
