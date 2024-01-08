@@ -13,7 +13,8 @@ export default defineConfig({
     sitemap({
       filter: (page) => 
         page !== 'https://www.galvix.com/sandbox/' && 
-        page !== 'https://www.galvix.com/index-saas/',
+        page !== 'https://www.galvix.com/index-saas/' &&
+        !page.includes("galvix.com/lp/"),
     }),
     partytown({
       config: {
