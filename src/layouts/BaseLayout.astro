@@ -11,8 +11,8 @@ const gtmContainerId = import.meta.env.GTM_CONTAINER_ID;
 <html lang="en">
 	<head>
 		<!-- Google Tag Manager -->
-		<script type="text/javascript" async src={`https://www.googletagmanager.com/gtag/js?id=${gtmContainerId}`}></script>
-		<script type="text/javascript" define:vars={{ gtmContainerId }}>
+		<script type="text/partytown" async src={`https://www.googletagmanager.com/gtag/js?id=${gtmContainerId}`}></script>
+		<script type="text/partytown" define:vars={{ gtmContainerId }}>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
