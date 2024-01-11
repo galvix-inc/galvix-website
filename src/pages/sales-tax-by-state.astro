@@ -44,7 +44,14 @@ Over the past year, there have been 1186 local sales tax rate changes in states,
 You can check out the most recent state-wise sales tax rate here (This will lead to the state sales tax rate pillar page)
 `;
 let url = import.meta.env.STRAPI_URL + "/api/states";
-const states = await fetch(url).then((response) =>
+const query = qs.stringify({
+    sort: ['name:asc'],
+    pagination: {
+      "start": 0,
+      "limit": 10
+    }
+});
+const states = await fetch(url + "?" + query).then((response) =>
   response.json()
 );
 ---
@@ -173,188 +180,11 @@ const states = await fetch(url).then((response) =>
                     </td>
                   </tr>
                   ): "No states found"}
-                  <!-- <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">Alabama</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">4.00%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">Up to 7.50%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4.00% - 11.50%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, Alabama</span></a>
-                    </td>
-                  </tr> -->
                 </tbody>
               </table>
+            </div>
+            <div class="mt-10 flex items-center justify-start gap-x-6">
+              <a href="/state-sales-tax-rates" class="text-sm font-semibold leading-6 text-gray-900">Show All Tax Rates <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </div>

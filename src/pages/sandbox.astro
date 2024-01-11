@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import USMap from '../components/USMap.jsx';
 const pageTitle = "Sales Tax By States 2024";
 const metaTitle = "Sales Tax By States 2024";
 const metaDescription = "Looking for sales tax by states? Get accurate local and state sales tax information updated for 2024 along with tips to be sales tax compliant.";
 ---
 
 <BaseLayout title={pageTitle} metaTitle={metaTitle} metaDescription={metaDescription}>
-
-
-
-
+    <USMap client:visible/>
 </BaseLayout>
