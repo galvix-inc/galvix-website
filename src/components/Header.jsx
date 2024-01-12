@@ -5,7 +5,6 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 const navigation = [
   { name: 'Benefits', href: import.meta.env.BASE_URL + "#benefits" },
   { name: 'How it works', href: import.meta.env.BASE_URL + "#how-it-works" },
-  { name: 'Pricing', href: import.meta.env.BASE_URL + "#pricing" },
   { name: 'Resources', href: '/resources' },
 ]
 
