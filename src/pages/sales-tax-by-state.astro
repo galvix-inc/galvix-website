@@ -2,6 +2,7 @@
 import qs from 'qs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { marked } from "marked";
+import StateSalesTaxMap from '../components/StateSalesTaxMap.jsx';
 const pageTitle = "Sales Tax By States 2024";
 const metaTitle = "Sales Tax By States 2024";
 const metaDescription = "Looking for sales tax by states? Get accurate local and state sales tax information updated for 2024 along with tips to be sales tax compliant.";
@@ -56,6 +57,7 @@ const states = await fetch(url + "?" + query).then((response) =>
 );
 ---
 <BaseLayout title={pageTitle} metaTitle={metaTitle} metaDescription={metaDescription}>
+  
     <!-- Section 1: Hero -->
     <div class="relative pt-14">
       <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -77,9 +79,7 @@ const states = await fetch(url + "?" + query).then((response) =>
               <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Sales Tax In The US By State</h2>
               <p class="mt-6 text-lg leading-8 text-gray-600">Click on the states for a detailed guide on sales tax</p>
             </div>
-            <!-- <div class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-              <img src="https://tailwindui.com/img/component-images/project-app-screenshot.png" alt="App screenshot" width="2432" height="1442" class="rounded-md shadow-2xl ring-1 ring-gray-900/10">
-            </div> -->
+            <StateSalesTaxMap client:visible/>
           </div>
         </div>
       </div>
@@ -171,12 +171,12 @@ const states = await fetch(url + "?" + query).then((response) =>
                 <tbody class="divide-y divide-gray-200 bg-white">
                   {states.data && states.data.length > 0 ? states.data.map((state) => 
                   <tr class="hover:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/" class=" text-indigo-600">{state.attributes.name}</a></td>
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href={`/sales-tax/${state.attributes.slug}`} class=" text-indigo-600">{state.attributes.name}</a></td>
                     <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">{state.attributes.stateTax}</td>
                     <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">{state.attributes.localTax}</td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{state.attributes.totalTax}</td>
                     <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, {state.attributes.name}</span></a>
+                      <a href={`/sales-tax/${state.attributes.slug}`} class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, {state.attributes.name}</span></a>
                     </td>
                   </tr>
                   ): "No states found"}
