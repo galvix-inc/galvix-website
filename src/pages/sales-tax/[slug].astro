@@ -1,60 +1,33 @@
 ---
 import qs from 'qs';
+import { marked } from "marked";
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ResourceCTA from '../../components/resources/ResourceCTA.astro';
-import AccordianWithList from '../../components/sales-tax-by-state/AccordianWithList.jsx';
 
 export async function getStaticPaths() {
   let url = import.meta.env.STRAPI_URL + "/api/jurisdictions";
 
-    const query = qs.stringify({
-        populate: {
-            metaImage: {
-            fields: ["name", "width", "height", "url"],
-        },
-    },
-    });
-
-  const data = await fetch(url + "?" + query).then(response => response.json());
-  return data.data.map((state) => {
+  const data = await fetch(url).then(response => response.json());
+  return data.data.map((jurisdiction) => {
     return {
-      params: { slug: state.attributes.slug },
-      props: { state },
+      params: { slug: jurisdiction.attributes.slug },
+      props: { jurisdiction },
     };
   });
 }
 
-const { state } = Astro.props;
+const { jurisdiction } = Astro.props;
 ---
-<BaseLayout title={state.attributes.metaTitle} metaTitle={state.attributes.metaTitle} metaDescription={state.attributes.metaDescription} image={state.attributes.metaImage.data.attributes}>
+<BaseLayout title={jurisdiction.attributes.metaTitle} metaTitle={jurisdiction.attributes.metaTitle} metaDescription={jurisdiction.attributes.metaDescription}>
 
     <!-- Section 1: Hero -->
     <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
-        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-            <div class="sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:text-left">
-                <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{state.attributes.name} Sales Tax Guide For Businesses</h2>
-                <p class="mt-6 text-lg leading-8 text-gray-600">Know everything about sales tax in {state.attributes.name} and get updated information to navigate tax regulations effectively.</p>
-                <div class="mt-10 flex items-center justify-center gap-x-6">
-                    <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Automate Sales Tax</a>
-                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Explore Tax Rates <span aria-hidden="true">→</span></a>
-                </div>
-            </div>
-            <div class="relative mt-12 sm:mx-auto sm:max-w-lg lg:col-span-6 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:items-center">
-              <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-                  <img class="w-full rounded-lg" src="https://placehold.co/1200x630" alt="">
-              </div>
-            </div>
-          </div>
-
-
-
-
         <div class="text-center mb-16">
-          <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{state.attributes.name} Sales Tax Guide For Businesses</h2>
-          <p class="mt-6 text-lg leading-8 text-gray-600">Know everything about sales tax in {state.attributes.name} and get updated information to navigate tax regulations effectively.</p>
+          <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{jurisdiction.attributes.name} Sales Tax Guide For Businesses</h2>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Know everything about sales tax in {jurisdiction.attributes.name} and get updated information to navigate tax regulations effectively.</p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Automate Sales Tax</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Explore Tax Rates <span aria-hidden="true">→</span></a>
+            <a href="/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Automate Sales Tax</a>
+            <a href="#tax-rates" class="text-sm font-semibold leading-6 text-gray-900">Explore Tax Rates <span aria-hidden="true">→</span></a>
           </div>
         </div>
     </div>
@@ -66,34 +39,34 @@ const { state } = Astro.props;
                 <!-- Summary Card -->
                 <div class="mt-4">
                     <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg px-6 py-12 bg-gradient-to-br from-indigo-100 via-indigo-100 to-indigo-300">
-                        <h2 class="text-3xl font-bold text-gray-900">Quick highlights on Alabama Sales tax</h2>
+                        <h2 class="text-3xl font-bold text-gray-900">Quick highlights on {jurisdiction.attributes.name} Sales tax</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <p class="mt-6 text-sm text-gray-600">Alabama state sales tax range</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">4-11%</p>
+                                <p class="mt-6 text-sm text-gray-600">{jurisdiction.attributes.name} state sales tax range</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.totalTaxMin * 100}% - {jurisdiction.attributes.totalTaxMax * 100}%</p>
                             </div>
                             <div>
                                 <p class="mt-6 text-sm text-gray-600">Base sales tax rate</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">4%</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.fixedTax * 100}%</p>
                             </div>
                             <div>
                                 <p class="mt-6 text-sm text-gray-600">Local Rate Range</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">0-7%</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.variableTaxMin * 100}% - {jurisdiction.attributes.variableTaxMax * 100}%</p>
                             </div>
                         </div>
                         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <p class="mt-6 text-sm text-gray-600">Economic Sales Threshold</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">$250,000 (annual sales)</p>
+                                <p class="mt-6 text-sm text-gray-600">Economic Nexus Sales Threshold</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.nexusThresholdSales}</p>
                             </div>
                             <div>
-                                <p class="mt-6 text-sm text-gray-600">Transactional Threshold</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">Not Applicable</p>
+                                <p class="mt-6 text-sm text-gray-600">Transaction Threshold</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.nexusThresholdTransactions?jurisdiction.attributes.nexusThresholdTransactions: "Not Applicable"}</p>
                             </div>
                             <div>
                                 <p class="mt-6 text-sm text-gray-600">Website</p>
-                                <p class="mt-2 text-xl  text-indigo-500 font-semibold">Revenue Department of Alabama</p>
+                                <a class="mt-2 text-xl  text-indigo-500 font-semibold" href={jurisdiction.attributes.filingWebsiteUrl}>{jurisdiction.attributes.filingWebsiteTitle}</a>
                             </div>
                         </div>
                     </div>
@@ -103,7 +76,7 @@ const { state } = Astro.props;
                 <!-- Calculator -->
                 <div class="mt-4">
                     <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg px-6 py-12">
-                        <h2 class="text-3xl font-bold text-gray-900">Alabama Sales tax Calculator</h2>
+                        <h2 class="text-3xl font-bold text-gray-900">{jurisdiction.attributes.name} Sales tax Calculator</h2>
                         <form id="salesTaxCalculator" action="#" method="POST" class="mt-6 space-y-6">
                             <div>
                               <label for="streetAddress" class="sr-only">Street Address</label>
@@ -131,14 +104,14 @@ const { state } = Astro.props;
     </div>
 
     <!-- Section 3: Tax Rates for Cities and Counties -->
-    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">2024 {state.attributes.name} Sales Tax Rates for Cities and Counties</h2>
-          <p class="mt-6 text-lg leading-8 text-gray-600">Get the sales tax rates assessed at the local level. Better yet, for instant and precise calculations of sales tax in Alabama, use our online sales tax calculator.</p>
+    <div id="tax-rates" class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
+        <div class="mb-16">
+          <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">2024 {jurisdiction.attributes.name} Sales Tax Rates for Cities and Counties</h2>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Get the sales tax rates assessed at the local level. Better yet, for instant and precise calculations of sales tax in {jurisdiction.attributes.name}, use our online sales tax calculator.</p>
         </div>
         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
         <div class="px-6 py-6">
-            <h3 class="text-xl font-semibold text-gray-900">Cities Sales Tax Rate</h3>
+            <h3 class="text-xl font-semibold text-gray-900">{jurisdiction.attributes.name} Cities Sales Tax Rate</h3>
             <div class="grid grid-cols-2 md:grid-cols-5 mt-6 gap-y-4">
                 <div class="col-span-1">
                     <a href="#" class="text-base font-semibold text-indigo-500">Dublin</a>
@@ -174,7 +147,7 @@ const { state } = Astro.props;
         </div>
         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
         <div class="px-6 py-6 mt-8">
-            <h3 class="text-xl font-semibold text-gray-900">Counties Sales Tax Rate</h3>
+            <h3 class="text-xl font-semibold text-gray-900">{jurisdiction.attributes.name} Counties Sales Tax Rate</h3>
             <div class="grid grid-cols-2 md:grid-cols-5 mt-6 gap-y-4">
                 <div class="col-span-1">
                     <a href="#" class="text-base font-semibold text-indigo-500">Dublin</a>
@@ -213,23 +186,14 @@ const { state } = Astro.props;
 
     <!-- FAQs -->
     <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
-        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-            <div class="lg:col-span-5">
-              <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
-              <p class="mt-4 text-base leading-7 text-gray-600">Can’t find the answer you’re looking for? Reach out to our <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">customer support</a> team.</p>
-            </div>
-            <div class="mt-10 lg:col-span-7 lg:mt-0">
-              <dl class="space-y-10">
-                <div>
-                    <h2 class="text-base font-semibold leading-7 text-gray-900">How do you make holy water?</h2>
-                    <p class="mt-2 text-base leading-7 text-gray-600">You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</p>
-                  </div>
-                
-      
-                <!-- More questions... -->
-              </dl>
-            </div>
-          </div>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Frequently Asked Questions</h2>
+        <div class="mt-10 lg:mt-10">
+            <article class="prose max-w-full w-full my-4">
+                {jurisdiction.attributes.faqs && 
+                    <div class="rich-text" set:html={marked.parse(jurisdiction.attributes.faqs)}  />
+                }
+            </article>
+        </div>
     </div>
 
     <ResourceCTA/>
