@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+let url = import.meta.env.STRAPI_URL + "/api/jurisdictions";
+const response = await fetch(url);
+const jurisdictions = await response.json();
+const colors = {};
+const hoverColors = {};
+const labels = {};
+const redirectUrls = {};
+if(jurisdictions.data && jurisdictions.data.length > 0) {
+    jurisdictions.data.forEach(function (jurisdiction) {
+      let myLabel = "<div style=\"width: 250px; margin: auto; padding: 8px 8px 8px 8px;\">";
+      myLabel += "<b>" + jurisdiction.attributes.name + "</b>";
+      if(jurisdiction.attributes.fixedTax > 0) { // state tax exists
+        colors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#DBEAFE";
+        hoverColors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#5FA5F9";
+
+        myLabel += "<br><br>Statewide sales tax rate: " + (jurisdiction.attributes.fixedTax * 100) + "%";
+      } else if (jurisdiction.attributes.variableTaxMax > 0) { // local tax exists
+        colors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#FFEDD5";
+        hoverColors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#FB923C";
+        myLabel += "<br><br>No statewide tax but some areas levy local tax";
+      } else { // no tax exists
+        colors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#E4E7EB";
+        hoverColors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#9BA3AF";
+        myLabel += "<br><br>No sales tax";
+      }
+      myLabel += "<br><br><p>Click to view the " + jurisdiction.attributes.name + " sales tax guide and use the sales tax calculator to determine local rates</p></div>"; 
+      labels[jurisdiction.attributes.code.toLocaleLowerCase()] = myLabel;
+      redirectUrls[jurisdiction.attributes.code.toLocaleLowerCase()] = "/sales-tax/" + jurisdiction.attributes.slug;
+    });
+}
+---
+<script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<link href="/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jqvmap/jquery.vmap.js"></script>
+<script type="text/javascript" src="/jqvmap/maps/jquery.vmap.usa.js" charset="utf-8"></script>
+<script define:vars={{ colors , labels, hoverColors, redirectUrls }}>
+  jQuery(document).ready(function () {
+    jQuery('#vmap').vectorMap({
+      map: 'usa_en',
+      backgroundColor: null,
+      enableZoom: false,
+      color: '#ffffff',
+      borderOpacity: 0.25,
+      showTooltip: true,
+      selectedColor: null,
+      hoverColors: hoverColors,
+      colors: colors,
+      onLabelShow: function(event, label, code) {
+        label.html(labels[code]);
+      },
+      onRegionClick: function(event, code, region){
+        event.preventDefault();
+        if(code in redirectUrls) {
+          window.location.href = redirectUrls[code];
+        }
+        
+        // var message = 'You clicked "'
+        //     + region
+        //     + '" which has the code: '
+        //     + code.toUpperCase();
+
+        // alert(message);
+        // event.preventDefault();
+        // console.log(code)
+        // window.location.href = `https://app.galvix.com/version-live/dashboard_v2?view=Jurisdictions&path=edit&item=${jurisdictions[code]}`
+      }
+    });
+  });
+</script>
+<div class="grid grid-cols-1 gap-4 justify-center">
+  <!-- map -->
+  <div id="vmap" class="h-96"></div>
+  <!-- legend -->
+  <div class="p-4 mx-auto grid grid-cols-1 lg:grid-cols-4 gap-2">
+    <div class="flex">
+      <div class="w-4 h-4 bg-blue-100 mr-2"></div>
+      <span class="text-black text-sm">Statewide sales tax</span>
+    </div>
+    <div class="flex col-span-2">
+      <div class="w-4 h-4 bg-orange-100 mr-2"></div>
+      <span class="text-black text-sm">No statewide tax but some areas levy local tax</span>
+    </div>
+    <div class="flex">
+      <div class="w-4 h-4 bg-gray-200 mr-2"></div>
+      <span class="text-black text-sm">No sales tax</span>
+    </div>
+  </div>
+</div>

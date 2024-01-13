@@ -1,0 +1,235 @@
+---
+import qs from 'qs';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { marked } from "marked";
+import SalesTaxByStateMap from '../components/sales-tax-by-state/SalesTaxByStateMap.astro';
+const pageTitle = "Sales Tax By States 2024";
+const metaTitle = "Sales Tax By States 2024";
+const metaDescription = "Looking for sales tax by states? Get accurate local and state sales tax information updated for 2024 along with tips to be sales tax compliant.";
+const faqContent=`
+### What is US Sales Tax?
+US sales tax is a consumption tax imposed by state and local governments, charged on sales of goods and services. Varying by state, it's added to the purchase price, paid by consumers, and collected by businesses to be remitted to the government.
+
+### Which are the states with the highest sales tax?
+California has the highest state-level sales tax rate at 7.25%. Indiana, Mississippi, Rhode Island, and Tennessee have the second-highest sales tax rate at 7%.
+
+### Which are states that have no sales tax?
+Alaska, Delaware, Montana, New Hampshire and Oregon are the five states with no statewide sales tax at present.
+
+### As a business, why should I care about US Sales Tax by State?
+Businesses must comply with state sales tax laws where they operate. Understanding and adhering to these laws is crucial to avoid legal issues and penalties. Accurate tax collection and remittance are essential for maintaining good standing with state authorities.
+
+### Are SaaS businesses taxable in the USA?
+Yes, SaaS (Software as a Service) businesses can be taxable in the USA. Sales tax applicability on SaaS varies by state, with some states taxing digital goods and services, including SaaS, while others do not. For additional tax-related information, please contact the Galvix support team.
+
+### Why should I know about the Sales Tax nexus?
+Understanding the sales tax nexus is important for any business. It helps in understanding where you need to collect and pay sales tax. Sales tax nexus is created through physical presence, economic activity, or other criteria, varying by state.
+
+### When should I register for a Sales Tax permit?
+You must register for a sales tax permit before starting to sell products or services in a state where you have a sales tax nexus. Timely registration ensures compliance with state laws and avoids potential penalties.
+
+### How do I register for a Sales Tax permit?
+To register for a sales tax permit, visit the tax authority website of the state where your business has a nexus. Complete the application process, which typically involves providing business details and may require a registration fee.
+
+### Why should I choose a Sales Tax compliance software like Galvix?
+Choosing a sales tax compliance software like Galvix simplifies managing sales tax obligations. It automates tax rate determination, collection, reporting, and remittance, reducing errors and saving time, including businesses operating in multiple states.
+
+### What are some of the recent changes in state tax rates across the United States?
+Over the past year, there have been 1186 local sales tax rate changes in states, cities, and counties across the United States. Here are recent state tax regulations that took place across the US in last few months:
+- **Florida:** Decreased the sales tax rate on commercial leases from 5.5% to 4.5%, effective December 1, 2023
+- **Louisiana:** Increased the sales tax rate from 9.1% to 9.85% in November 2023
+- **South Dakota:** Reduced statewide sales tax rate from 4.5% to 4.2% for four years starting July 1, 2023
+- **Wisconsin:** Door and Bayfield counties raised their sales tax rates from 5.5% to 6%
+- **West Virginia:** Increased the sales tax in Wayne, WV, from 6% to 7%
+
+You can check out the most recent state-wise sales tax rate here (This will lead to the state sales tax rate pillar page)
+`;
+let url = import.meta.env.STRAPI_URL + "/api/jurisdictions";
+const query = qs.stringify({
+    sort: ['name:asc'],
+    pagination: {
+      "start": 0,
+      "limit": 10
+    }
+});
+const states = await fetch(url + "?" + query).then((response) =>
+  response.json()
+);
+---
+<BaseLayout title={pageTitle} metaTitle={metaTitle} metaDescription={metaDescription}>
+  
+  <!-- Section 1: 2 column Hero -->
+  <div class="relative pt-14">
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="py-12 sm:py-12">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="mx-auto max-w-5xl">
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Sales Tax By States In 2024</h1>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Get accurate local and state sales tax information curated by Galvix’s team of 100+ sales tax experts.</p>
+            <div class="mt-10 flex items-center gap-x-6">
+              <a href="/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Automate Sales Tax</a>
+            </div>
+          </div>
+          <div class="">
+            <SalesTaxByStateMap/>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+      <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+  </div>
+
+    <!-- Section 3: Key Highlights -->
+    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
+      <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div>
+          <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Key highlights of US sales tax by states</h2>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Here is a brief overview of the sales tax structure in the US, highlighting the tax rate variations across different regions.</p>
+        </div>
+        <dl class="col-span-2 grid grid-cols-1 gap-x-8 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:gap-y-16">
+          <div class="relative pl-9">
+            <dt class="font-semibold text-gray-900">
+              <svg class="absolute left-0 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              General Overview
+            </dt>
+            <dd class="mt-2">45 states and the District of Columbia collect state sales tax in the US. Alaska, Delaware, Montana, New Hampshire, and Oregon do not levy any sales tax.</dd>
+          </div>
+          <div class="relative pl-9">
+            <dt class="font-semibold text-gray-900">
+              <svg class="absolute left-0 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              Local Sales Taxes
+            </dt>
+            <dd class="mt-2">38 states impose additional local sales taxes, leading to intra-state tax rate variability.</dd>
+          </div>
+          <div class="relative pl-9">
+            <dt class="font-semibold text-gray-900">
+              <svg class="absolute left-0 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              High Combined Sales Tax States
+            </dt>
+            <dd class="mt-2">Tennessee's combined rate at 9.548% ranks it amongst the highest for combined state and local sales taxes.</dd>
+          </div>
+          <div class="relative pl-9">
+            <dt class="font-semibold text-gray-900">
+              <svg class="absolute left-0 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              High Local Sales Tax States
+            </dt>
+            <dd class="mt-2">Alabama, Louisiana, and Colorado display significant local tax rate differences, with average tax rates exceeding 4.5%.</dd>
+          </div>
+          <div class="relative pl-9">
+            <dt class="font-semibold text-gray-900">
+              <svg class="absolute left-0 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              Recent Changes and Trends
+            </dt>
+            <dd class="mt-2">South Dakota's state sales tax temporarily dropped from 4.5% to 4.2% in 2023, set to revert in four years.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    
+    <!-- Section 4: Rates Table -->
+    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Sales Tax Rates For Every State in 2024</h2>
+        <p class="mt-6 text-lg leading-8 text-gray-600">Check out the most recent sales tax rates and local tax range for all states in the US.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 mt-4 gap-16">
+        <div class="col-span-3 pb-4">
+          <!-- Rates Table -->
+          <div class="mt-4">
+            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+              <table class="min-w-full divide-y divide-gray-300">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">State</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">State Tax</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Local Tax</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Total Tax Range</th>
+                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                      <span class="sr-only">View Details</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                  {states.data && states.data.length > 0 ? states.data.map((state) => 
+                  <tr class="hover:bg-gray-50">
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href={`/sales-tax/${state.attributes.slug}`} class=" text-indigo-600">{state.attributes.name}</a></td>
+                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">{state.attributes.fixedTax * 100}%</td>
+                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">{state.attributes.variableTaxMin * 100}% - {state.attributes.variableTaxMax * 100}%</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{state.attributes.totalTaxMin * 100}% - {state.attributes.totalTaxMax * 100}%</td>
+                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                      <a href={`/sales-tax/${state.attributes.slug}`} class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, {state.attributes.name}</span></a>
+                    </td>
+                  </tr>
+                  ): "No states found"}
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-10 flex items-center justify-start gap-x-6">
+              <a href="/state-sales-tax-rates" class="text-sm font-semibold leading-6 text-gray-900">Show All Tax Rates <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-2 p-4">
+          <div class="mx-auto max-w-2xl lg:mx-0">
+            <h2 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">Sales tax rate calculator</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Need help in calculating sales tax? Use our sales tax calculator to look up the sales tax rate for any state in the United States.</p>
+            <div class="mt-8 flex gap-x-6">
+              <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Calculate Sales Tax</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: FAQs -->
+    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
+      <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Frequently Asked Questions</h2>
+      <div class="mt-10 lg:mt-10">
+        <article class="prose max-w-full w-full my-4">
+          <div class="rich-text" set:html={marked.parse(faqContent)}  />
+        </article>
+      </div>
+    </div>
+
+    <!-- Section 6: Galvix Benefits -->
+
+    <!-- Section 7: CTA -->
+    <div class="bg-white">
+      <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+        <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
+          <h2 class="mx-auto max-w-5xl text-3xl font-bold tracking-tight text-white sm:text-4xl">Focus on your business. We’ll take care of sales tax</h2>
+          <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-300">Spend fewer than five minutes a month on sales tax returns preparation and filing with our done-for-you service. We do the work, all you do is approve.</p>
+          <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a href="/get-started" id="link-get-started-footer-cta" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Get Started</a>
+          </div>
+          <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
+            <circle cx="512" cy="512" r="512" fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)" fill-opacity="0.7" />
+            <defs>
+              <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
+                <stop stop-color="#7775D6" />
+                <stop offset="1" stop-color="#E935C1" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+      
+</BaseLayout>
