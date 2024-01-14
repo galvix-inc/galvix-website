@@ -1,6 +1,18 @@
 ---
+import jurisdictions from "../data/jurisdictions.json";
 ---
-<div class="flex justify-center">
-  <div class="m-2">Line 1</div>
-  <div class="m-2">Line 2</div>
-</div>
+<main>
+  <h1>List of jurisdictions</h1>
+  <ul>
+    {
+      jurisdictions.map((jurisdiction) => 
+        <li>{jurisdiction.slug}</li>
+      )  
+    }
+    <!-- {
+      jurisdictions.forEach((jurisdiction) => {
+        <li>Hello</li>
+      })
+    } -->
+  </ul>
+</main>

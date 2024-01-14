@@ -49,7 +49,7 @@ const query = qs.stringify({
     sort: ['name:asc'],
     pagination: {
       "start": 0,
-      "limit": 10
+      "limit": 100
     }
 });
 const states = await fetch(url + "?" + query).then((response) =>
@@ -59,26 +59,24 @@ const states = await fetch(url + "?" + query).then((response) =>
 <BaseLayout title={pageTitle} metaTitle={metaTitle} metaDescription={metaDescription} norobots>
   
   <!-- Section 1: 2 column Hero -->
-  <div class="relative pt-14">
+  <div class="relative pt-24 sm:pt-32">
     <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
       <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
     </div>
-    <div class="py-12 sm:py-12">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div class="mx-auto max-w-5xl">
-            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Sales Tax By States In 2024</h1>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Get accurate local and state sales tax information curated by Galvix’s team of 100+ sales tax experts.</p>
-            <div class="mt-10 flex items-center gap-x-6">
-              <a href="/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Automate Sales Tax</a>
-            </div>
-          </div>
-          <div class="">
-            <SalesTaxByStateMap/>
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="mx-auto max-w-5xl">
+          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Sales Tax By States In 2024</h1>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Get accurate local and state sales tax information curated by Galvix’s team of 100+ sales tax experts.</p>
+          <div class="mt-10 flex items-center gap-x-6">
+            <a href="/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Automate Sales Tax</a>
           </div>
         </div>
-        
+        <div class="">
+          <SalesTaxByStateMap states={states}/>
+        </div>
       </div>
+      
     </div>
     <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
       <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
@@ -160,29 +158,23 @@ const states = await fetch(url + "?" + query).then((response) =>
                     <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">State Tax</th>
                     <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Local Tax</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Total Tax Range</th>
-                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                      <span class="sr-only">View Details</span>
-                    </th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
                   {states.data && states.data.length > 0 ? states.data.map((state) => 
                   <tr class="hover:bg-gray-50">
                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href={`/sales-tax/${state.attributes.slug}`} class=" text-indigo-600">{state.attributes.name}</a></td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">{state.attributes.fixedTax * 100}%</td>
-                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">{state.attributes.variableTaxMin * 100}% - {state.attributes.variableTaxMax * 100}%</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{state.attributes.totalTaxMin * 100}% - {state.attributes.totalTaxMax * 100}%</td>
-                    <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href={`/sales-tax/${state.attributes.slug}`} class="text-indigo-600 hover:text-indigo-900">View Guide<span class="sr-only">, {state.attributes.name}</span></a>
-                    </td>
+                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">{Math.floor(state.attributes.fixedTax * 100)}%</td>
+                    <td class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">{Math.floor(state.attributes.variableTaxMin * 100)}% - {Math.floor(state.attributes.variableTaxMax * 100)}%</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{Math.floor(state.attributes.totalTaxMin * 100)}% - {Math.floor(state.attributes.totalTaxMax * 100)}%</td>
                   </tr>
                   ): "No states found"}
                 </tbody>
               </table>
             </div>
-            <div class="mt-10 flex items-center justify-start gap-x-6">
+            <!-- <div class="mt-10 flex items-center justify-start gap-x-6">
               <a href="/state-sales-tax-rates" class="text-sm font-semibold leading-6 text-gray-900">Show All Tax Rates <span aria-hidden="true">→</span></a>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-span-2 p-4">

@@ -1,33 +1,33 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-let url = import.meta.env.STRAPI_URL + "/api/jurisdictions";
-const response = await fetch(url);
-const jurisdictions = await response.json();
+const {
+    states
+} = Astro.props;
 const colors = {};
 const hoverColors = {};
 const labels = {};
 const redirectUrls = {};
-if(jurisdictions.data && jurisdictions.data.length > 0) {
-    jurisdictions.data.forEach(function (jurisdiction) {
+if(states.data && states.data.length > 0) {
+    states.data.forEach(function (state) {
       let myLabel = "<div style=\"width: 250px; margin: auto; padding: 8px 8px 8px 8px;\">";
-      myLabel += "<b>" + jurisdiction.attributes.name + "</b>";
-      if(jurisdiction.attributes.fixedTax > 0) { // state tax exists
-        colors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#DBEAFE";
-        hoverColors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#5FA5F9";
+      myLabel += "<b>" + state.attributes.name + "</b>";
+      if(state.attributes.fixedTax > 0) { // state tax exists
+        colors[state.attributes.code.toLocaleLowerCase()] = "#60A5FA";
+        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#1e3a8a";
 
-        myLabel += "<br><br>Statewide sales tax rate: " + (jurisdiction.attributes.fixedTax * 100) + "%";
-      } else if (jurisdiction.attributes.variableTaxMax > 0) { // local tax exists
-        colors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#FFEDD5";
-        hoverColors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#FB923C";
+        myLabel += "<br><br>Statewide sales tax rate: " + (state.attributes.fixedTax * 100) + "%";
+      } else if (state.attributes.variableTaxMax > 0) { // local tax exists
+        colors[state.attributes.code.toLocaleLowerCase()] = "#fb923c";
+        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#7c2d12";
         myLabel += "<br><br>No statewide tax but some areas levy local tax";
       } else { // no tax exists
-        colors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#E4E7EB";
-        hoverColors[jurisdiction.attributes.code.toLocaleLowerCase()] = "#9BA3AF";
+        colors[state.attributes.code.toLocaleLowerCase()] = "#9ca3af";
+        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#111827";
         myLabel += "<br><br>No sales tax";
       }
-      myLabel += "<br><br><p>Click to view the " + jurisdiction.attributes.name + " sales tax guide and use the sales tax calculator to determine local rates</p></div>"; 
-      labels[jurisdiction.attributes.code.toLocaleLowerCase()] = myLabel;
-      redirectUrls[jurisdiction.attributes.code.toLocaleLowerCase()] = "/sales-tax/" + jurisdiction.attributes.slug;
+      myLabel += "<br><br><p>Click to view the " + state.attributes.name + " sales tax guide and use the sales tax calculator to determine local rates</p></div>"; 
+      labels[state.attributes.code.toLocaleLowerCase()] = myLabel;
+      redirectUrls[state.attributes.code.toLocaleLowerCase()] = "/sales-tax/" + state.attributes.slug;
     });
 }
 ---
@@ -43,6 +43,7 @@ if(jurisdictions.data && jurisdictions.data.length > 0) {
       backgroundColor: null,
       enableZoom: false,
       color: '#ffffff',
+      borderColor: null,
       borderOpacity: 0.25,
       showTooltip: true,
       selectedColor: null,
@@ -76,15 +77,15 @@ if(jurisdictions.data && jurisdictions.data.length > 0) {
   <!-- legend -->
   <div class="p-4 mx-auto grid grid-cols-1 lg:grid-cols-4 gap-2">
     <div class="flex">
-      <div class="w-4 h-4 bg-blue-100 mr-2"></div>
+      <div class="w-4 h-4 bg-blue-400 mr-2"></div>
       <span class="text-black text-sm">Statewide sales tax</span>
     </div>
     <div class="flex col-span-2">
-      <div class="w-4 h-4 bg-orange-100 mr-2"></div>
+      <div class="w-4 h-4 bg-orange-400 mr-2"></div>
       <span class="text-black text-sm">No statewide tax but some areas levy local tax</span>
     </div>
     <div class="flex">
-      <div class="w-4 h-4 bg-gray-200 mr-2"></div>
+      <div class="w-4 h-4 bg-gray-400 mr-2"></div>
       <span class="text-black text-sm">No sales tax</span>
     </div>
   </div>
