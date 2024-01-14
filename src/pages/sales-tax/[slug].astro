@@ -6,8 +6,15 @@ import ResourceCTA from '../../components/resources/ResourceCTA.astro';
 
 export async function getStaticPaths() {
   let url = import.meta.env.STRAPI_URL + "/api/jurisdictions";
+  const query = qs.stringify({
+    sort: ['name:asc'],
+    pagination: {
+      "start": 0,
+      "limit": 100
+    }
+    });
 
-  const data = await fetch(url).then(response => response.json());
+  const data = await fetch(url + "?" + query).then(response => response.json());
   return data.data.map((jurisdiction) => {
     return {
       params: { slug: jurisdiction.attributes.slug },
