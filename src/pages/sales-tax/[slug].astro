@@ -50,15 +50,15 @@ const { jurisdiction } = Astro.props;
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <p class="mt-6 text-sm text-gray-600">{jurisdiction.attributes.name} state sales tax range</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.totalTaxMin * 100}% - {jurisdiction.attributes.totalTaxMax * 100}%</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{Math.floor(jurisdiction.attributes.totalTaxMin * 100)}% - {Math.floor(jurisdiction.attributes.totalTaxMax * 100)}%</p>
                             </div>
                             <div>
                                 <p class="mt-6 text-sm text-gray-600">Base sales tax rate</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.fixedTax * 100}%</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{Math.floor(jurisdiction.attributes.fixedTax * 100)}%</p>
                             </div>
                             <div>
                                 <p class="mt-6 text-sm text-gray-600">Local Rate Range</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.variableTaxMin * 100}% - {jurisdiction.attributes.variableTaxMax * 100}%</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{Math.floor(jurisdiction.attributes.variableTaxMin * 100)}% - {Math.floor(jurisdiction.attributes.variableTaxMax * 100)}%</p>
                             </div>
                         </div>
                         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
