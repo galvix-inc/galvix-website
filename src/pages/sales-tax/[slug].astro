@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 
 const { jurisdiction } = Astro.props;
 ---
-<BaseLayout title={jurisdiction.attributes.metaTitle} metaTitle={jurisdiction.attributes.metaTitle} metaDescription={jurisdiction.attributes.metaDescription}>
+<BaseLayout title={jurisdiction.attributes.metaTitle} metaTitle={jurisdiction.attributes.metaTitle} metaDescription={jurisdiction.attributes.metaDescription} norobots=true>
 
     <!-- Section 1: Hero -->
     <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
