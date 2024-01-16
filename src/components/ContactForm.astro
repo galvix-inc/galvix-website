@@ -28,6 +28,14 @@ const {
             <input type="text" name="mobile" id="mobile" autocomplete="tel" placeholder="Mobile number" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
           </div>
 
+          <!-- Capture UTM params -->
+          <div>
+            <input type="hidden" name="utm_source" value="">
+            <input type="hidden" name="utm_medium" value="">
+            <input type="hidden" name="utm_campaign" value="">
+            <input type="hidden" name="utm_term" value="">
+          </div>
+
           <div>
             <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">{buttonLabel ? buttonLabel:"Submit"}</button>
           </div>
