@@ -12,17 +12,17 @@ if(states.data && states.data.length > 0) {
       let myLabel = "<div style=\"width: 250px; margin: auto; padding: 8px 8px 8px 8px;\">";
       myLabel += "<b>" + state.attributes.name + "</b>";
       if(state.attributes.fixedTax > 0) { // state tax exists
-        colors[state.attributes.code.toLocaleLowerCase()] = "#60A5FA";
-        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#1e3a8a";
+        colors[state.attributes.code.toLocaleLowerCase()] = "#dbeafe";
+        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#60a5fa";
 
         myLabel += "<br><br>Statewide sales tax rate: " + (state.attributes.fixedTax * 100) + "%";
       } else if (state.attributes.variableTaxMax > 0) { // local tax exists
-        colors[state.attributes.code.toLocaleLowerCase()] = "#fb923c";
-        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#7c2d12";
+        colors[state.attributes.code.toLocaleLowerCase()] = "#ffedd5";
+        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#fb923c";
         myLabel += "<br><br>No statewide tax but some areas levy local tax";
       } else { // no tax exists
-        colors[state.attributes.code.toLocaleLowerCase()] = "#9ca3af";
-        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#111827";
+        colors[state.attributes.code.toLocaleLowerCase()] = "#f3f4f6";
+        hoverColors[state.attributes.code.toLocaleLowerCase()] = "#9ca3af";
         myLabel += "<br><br>No sales tax";
       }
       myLabel += "<br><br><p>Click to view the " + state.attributes.name + " sales tax guide and use the sales tax calculator to determine local rates</p></div>"; 
@@ -66,15 +66,15 @@ if(states.data && states.data.length > 0) {
   <!-- legend -->
   <div class="p-4 mx-auto grid grid-cols-1 lg:grid-cols-4 gap-2">
     <div class="flex">
-      <div class="w-4 h-4 bg-blue-400 mr-2"></div>
+      <div class="w-4 h-4 bg-blue-100 mr-2"></div>
       <span class="text-black text-sm">Statewide sales tax</span>
     </div>
     <div class="flex col-span-2">
-      <div class="w-4 h-4 bg-orange-400 mr-2"></div>
+      <div class="w-4 h-4 bg-orange-100 mr-2"></div>
       <span class="text-black text-sm">No statewide tax but some areas levy local tax</span>
     </div>
     <div class="flex">
-      <div class="w-4 h-4 bg-gray-400 mr-2"></div>
+      <div class="w-4 h-4 bg-gray-100 mr-2"></div>
       <span class="text-black text-sm">No sales tax</span>
     </div>
   </div>
