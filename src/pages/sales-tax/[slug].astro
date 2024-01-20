@@ -30,7 +30,7 @@ if (jurisdiction.attributes.nexusThresholdType != "NOT APPLICABLE" && jurisdicti
     nexusThreshold += " " + jurisdiction.attributes.nexusThresholdType + " " + jurisdiction.attributes.nexusThresholdTransactions + " transactions";
 }
 ---
-<BaseLayout title={jurisdiction.attributes.seoConfig.pageTitle} metaTitle={jurisdiction.attributes.seoConfig.metaTitle} metaDescription={jurisdiction.attributes.seoConfig.metaDescription} norobots={jurisdiction.attributes.seoConfig.norobots}>
+<BaseLayout title={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.pageTitle:""} metaTitle={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.metaTitle:""} metaDescription={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.metaDescription:""} norobots={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.norobots:false}>
 
     <!-- Section 1: Hero -->
     <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
