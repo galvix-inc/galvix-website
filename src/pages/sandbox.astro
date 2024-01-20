@@ -1,35 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
+<!-- <div class="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div> -->
+<!-- <div class="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div> -->
 <BaseLayout>
-    <div class="mt-8 flow-root">
-        <div class="mx-auto max-w-7xl md:px-8 justify-center flex">
-            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-300">
-                <thead>
-                    <tr>
-                    <th scope="col" class="w-60 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3">Name</th>
-                    <th scope="col" class="w-24 px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
-                    <th scope="col" class="w-24 px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white">
-                    <tr class="even:bg-gray-100">
-                        <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">This is a long long long long text</td>
-                        <td class="px-3 py-4 text-sm text-gray-500">Yes</td>
-                        <td class="px-3 py-4 text-sm text-gray-500">No</td>
-                    </tr>
-                    <tr class="even:bg-gray-100">
-                        <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">Lindsay Walton</td>
-                        <td class="px-3 py-4 text-sm text-gray-500">Yes</td>
-                        <td class="px-3 py-4 text-sm text-gray-500">No</td>
-                    </tr>
-        
-                    <!-- More people... -->
-                </tbody>
-                </table>
+    <div class="mx-auto mt-32 max-w-5xl sm:mt-32 md:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg h-96 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
+            <p>Hello World!</p>
+            
+            <!-- <div class="absolute top-0 -z-10 h-96 w-full bg-white">
+                <div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]">
+                    <p>Hello</p>
                 </div>
-            </div>
+            </div> -->
+            <!-- <div class="-z-10 h-96 [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]">
+                
+            </div> -->
+            
         </div>
+    </div>
 </BaseLayout>

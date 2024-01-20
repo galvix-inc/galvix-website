@@ -2,11 +2,12 @@
 import qs from 'qs';
 import { marked } from "marked";
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ResourceCTA from '../../components/resources/ResourceCTA.astro';
+import CTABlockSEOPages from '../../components/content-blocks/CTABlockSEOPages.astro';
 
 export async function getStaticPaths() {
   let url = import.meta.env.STRAPI_URL + "/api/jurisdictions";
   const query = qs.stringify({
+    populate: '*',
     sort: ['name:asc'],
     pagination: {
       "start": 0,
@@ -24,8 +25,12 @@ export async function getStaticPaths() {
 }
 
 const { jurisdiction } = Astro.props;
+let nexusThreshold = "$" + jurisdiction.attributes.nexusThresholdSales.toLocaleString('en', {useGrouping:true});
+if (jurisdiction.attributes.nexusThresholdType != "NOT APPLICABLE" && jurisdiction.attributes.nexusThresholdTransactions) {
+    nexusThreshold += " " + jurisdiction.attributes.nexusThresholdType + " " + jurisdiction.attributes.nexusThresholdTransactions + " transactions";
+}
 ---
-<BaseLayout title={jurisdiction.attributes.metaTitle} metaTitle={jurisdiction.attributes.metaTitle} metaDescription={jurisdiction.attributes.metaDescription} norobots=true>
+<BaseLayout title={jurisdiction.attributes.seoConfig.pageTitle} metaTitle={jurisdiction.attributes.seoConfig.metaTitle} metaDescription={jurisdiction.attributes.seoConfig.metaDescription} norobots={jurisdiction.attributes.seoConfig.norobots}>
 
     <!-- Section 1: Hero -->
     <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
@@ -45,8 +50,10 @@ const { jurisdiction } = Astro.props;
             <div class="col-span-8 pb-4">
                 <!-- Summary Card -->
                 <div class="mt-4">
-                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg px-6 py-12 bg-gradient-to-br from-indigo-100 via-indigo-100 to-indigo-300">
+                    <div class="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5 sm:rounded-lg px-6 py-12 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
                         <h2 class="text-3xl font-bold text-gray-900">Quick highlights on {jurisdiction.attributes.name} Sales tax</h2>
+                        <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                        <h3 class="text-xl font-semibold text-gray-900 mt-8">Sales tax rates</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <p class="mt-6 text-sm text-gray-600">{jurisdiction.attributes.name} state sales tax range</p>
@@ -62,15 +69,31 @@ const { jurisdiction } = Astro.props;
                             </div>
                         </div>
                         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <h3 class="text-xl font-semibold text-gray-900 mt-8">Economic Nexus Rules</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+                                <div class="md:col-span-2">
+                                    <p class="mt-6 text-sm text-gray-600">Sales Threshold</p>
+                                    <p class="mt-2 text-xl text-gray-900 font-semibold">${jurisdiction.attributes.nexusThresholdSales.toLocaleString('en', {useGrouping:true})}</p>
+                                </div>
+                                <div class="flex items-center justify-start">
+                                    <!-- <p class="mt-6 text-sm text-gray-600">Sales Threshold</p> -->
+                                    <p class="text-xl text-gray-900 font-medium">{(jurisdiction.attributes.nexusThresholdType != "NOT APPLICABLE")?jurisdiction.attributes.nexusThresholdType:""}</p>
+                                </div>
+                                <div class="md:col-span-3">
+                                    <p class="mt-6 text-sm text-gray-600">Transactions Threshold</p>
+                                    <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.nexusThresholdTransactions?<span>{jurisdiction.attributes.nexusThresholdTransactions} transactions</span>: "Not Applicable"}</p>
+                                </div>
+                            </div>    
                             <div>
-                                <p class="mt-6 text-sm text-gray-600">Economic Nexus Sales Threshold</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.nexusThresholdSales}</p>
+                                <p class="mt-6 text-sm text-gray-600">Reference Period</p>
+                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.nexusThresholdLookbackPeriod}</p>
                             </div>
-                            <div>
-                                <p class="mt-6 text-sm text-gray-600">Transaction Threshold</p>
-                                <p class="mt-2 text-xl text-gray-900 font-semibold">{jurisdiction.attributes.nexusThresholdTransactions?jurisdiction.attributes.nexusThresholdTransactions: "Not Applicable"}</p>
-                            </div>
+                        </div>
+                        
+                        <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                        <h3 class="text-xl font-semibold text-gray-900 mt-8">Filing Details</h3>
+                        <div>
                             <div>
                                 <p class="mt-6 text-sm text-gray-600">Website</p>
                                 <a class="mt-2 text-xl  text-indigo-500 font-semibold" href={jurisdiction.attributes.filingWebsiteUrl}>{jurisdiction.attributes.filingWebsiteTitle}</a>
@@ -82,7 +105,7 @@ const { jurisdiction } = Astro.props;
             <div class="col-span-4 pb-4">
                 <!-- Calculator -->
                 <div class="mt-4">
-                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg px-6 py-12">
+                    <div class="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5 sm:rounded-lg px-6 py-12">
                         <h2 class="text-3xl font-bold text-gray-900">{jurisdiction.attributes.name} Sales tax Calculator</h2>
                         <form id="salesTaxCalculator" action="#" method="POST" class="mt-6 space-y-6">
                             <div>
@@ -203,6 +226,7 @@ const { jurisdiction } = Astro.props;
         </div>
     </div>
 
-    <ResourceCTA/>
+    <!-- CTA -->
+    <CTABlockSEOPages/>
 </BaseLayout>
 
