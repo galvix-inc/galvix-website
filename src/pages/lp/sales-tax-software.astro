@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSectionForLPs from '../../components/content-blocks/HeroSectionForLPs.astro';
+import HowItWorks from '../../components/content-blocks/HowItWorks.astro';
+import CustomerService from '../../components/content-blocks/CustomerService.astro';
+import Testimonials from '../../components/content-blocks/Testimonials.astro';
+import CTABlock from '../../components/content-blocks/CTABlock.astro';
+const pageTitle = "Best Sales Tax Software for Growing Businesses";
+const metaTitle = "Best Sales Tax Software for Growing Businesses";
+const metaDescription = "Galvix is the most comprehensive sales tax solution, including exposure monitoring, tax calculation, and filing services.";
+---
+<BaseLayout title={pageTitle} metaTitle={metaTitle} metaDescription={metaDescription} norobots=true landingpage>
+  <!-- Sticky Header -->
+  <header class="bg-white sticky top-0 w-full z-50">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Galvix</span>
+          <img class="h-8 w-auto" src="/images/galvix-logo.png" alt="Galvix Logo">
+        </a>
+        <div class="flex justify-end items-center">
+            <div class="flex items-center gap-x-6">
+                <a href="#cta" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Start a Free Trial</a>
+            </div>
+        </div>
+      </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <HeroSectionForLPs 
+    heading="Modern Sales Tax Software with Exceptional Customer Service" 
+    subheading="" 
+    showClientLogos=true 
+    formId="sales-tax-software-lp-form" 
+    formTitle="Start a Free Trial"
+    formDescription="No credit card required."
+    formButtonLabel="Sign up, It's Free"/>
+
+  <!-- How it works  -->
+  <HowItWorks/>
+
+  <!-- Exceptional Customer Service -->
+  <CustomerService/>
+
+  <!-- Testimonials -->
+  <Testimonials/>
+
+  <!-- CTA -->
+  <CTABlock
+    title = "Focus on your business. We’ll take care of sales tax"
+    description = "Discover how Galvix can effortlessly ensure sales tax compliance for your business."
+    CTAButtonLabel = "Start a Free Trial"
+  />
+  
+
+</BaseLayout>
