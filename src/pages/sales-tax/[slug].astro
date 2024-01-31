@@ -3,6 +3,7 @@ import qs from 'qs';
 import { marked } from "marked";
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTABlockSEOPages from '../../components/content-blocks/CTABlockSEOPages.astro';
+import Handlebars from "handlebars";
 
 export async function getStaticPaths() {
   let url = import.meta.env.STRAPI_URL + "/api/jurisdictions";
@@ -29,6 +30,25 @@ let nexusThreshold = "$" + jurisdiction.attributes.nexusThresholdSales.toLocaleS
 if (jurisdiction.attributes.nexusThresholdType != "NOT APPLICABLE" && jurisdiction.attributes.nexusThresholdTransactions) {
     nexusThreshold += " " + jurisdiction.attributes.nexusThresholdType + " " + jurisdiction.attributes.nexusThresholdTransactions + " transactions";
 }
+
+// fetch the template for the FAQ section
+let url = import.meta.env.STRAPI_URL + "/api/templates";
+let query = qs.stringify({
+    filters: {
+        slug: {
+            $eq: "state-sales-tax-guide",
+        }
+    }
+});
+const templateData = await fetch(url + "?" + query).then((response) =>
+  response.json()
+);
+
+// generate the FAQ by combining the CMS data and the template
+const template = Handlebars.compile(templateData.data[0].attributes.content);
+const faq = template(jurisdiction.attributes);
+
+
 ---
 <BaseLayout title={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.pageTitle:""} metaTitle={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.metaTitle:""} metaDescription={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.metaDescription:""} norobots={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.norobots:false}>
 
@@ -219,9 +239,7 @@ if (jurisdiction.attributes.nexusThresholdType != "NOT APPLICABLE" && jurisdicti
         <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Frequently Asked Questions</h2>
         <div class="mt-10 lg:mt-10">
             <article class="prose max-w-full w-full my-4">
-                {jurisdiction.attributes.faqs && 
-                    <div class="rich-text" set:html={marked.parse(jurisdiction.attributes.faqs)}  />
-                }
+                <div class="rich-text" set:html={marked.parse(faq)}  />
             </article>
         </div>
     </div>

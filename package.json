@@ -21,6 +21,7 @@
     "@types/react-dom": "^18.2.17",
     "astro": "^3.6.0",
     "date-fns": "^2.30.0",
+    "handlebars": "^4.7.8",
     "marked": "^10.0.0",
     "mixpanel-browser": "^2.48.1",
     "qs": "^6.11.2",
