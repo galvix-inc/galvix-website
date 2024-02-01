@@ -47,10 +47,12 @@ const templateData = await fetch(url + "?" + query).then((response) =>
 // generate the FAQ by combining the CMS data and the template
 const template = Handlebars.compile(templateData.data[0].attributes.content);
 const faq = template(jurisdiction.attributes);
-
+const title = jurisdiction.attributes.name + " Sales Tax 2024 Guide and Calculator";
+const metaTitle = title;
+const metaDescription = `${jurisdiction.attributes.name} sales and use tax ranges from ${jurisdiction.attributes.totalTaxMin * 100}-${jurisdiction.attributes.totalTaxMax * 100}%. Here is a detailed guide on State and Local Sales Tax in Alabama for 2024.`;
 
 ---
-<BaseLayout title={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.pageTitle:""} metaTitle={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.metaTitle:""} metaDescription={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.metaDescription:""} norobots={jurisdiction.attributes.seoConfig?jurisdiction.attributes.seoConfig.norobots:false}>
+<BaseLayout {title} {metaTitle} {metaDescription} norobots=false>
 
     <!-- Section 1: Hero -->
     <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">

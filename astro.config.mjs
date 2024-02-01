@@ -15,8 +15,7 @@ export default defineConfig({
         page !== 'https://www.galvix.com/sandbox/' && 
         page !== 'https://www.galvix.com/index-saas/' &&
         !page.includes("/lp/") &&
-        !page.includes("/sales-tax-by-state") &&
-        !page.includes("/sales-tax/"),
+        !page.includes("/sales-tax-by-state"),
     }),
     partytown({
       config: {
