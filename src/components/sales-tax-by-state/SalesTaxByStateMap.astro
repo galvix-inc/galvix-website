@@ -27,7 +27,7 @@ if(states.data && states.data.length > 0) {
       }
       myLabel += "<br><br><p>Click to view the " + state.attributes.name + " sales tax guide and use the sales tax calculator to determine local rates</p></div>"; 
       labels[state.attributes.code.toLocaleLowerCase()] = myLabel;
-      redirectUrls[state.attributes.code.toLocaleLowerCase()] = "/guide/" + state.attributes.slug + "-sales-tax";
+      redirectUrls[state.attributes.code.toLocaleLowerCase()] = "/sales-tax/" + state.attributes.slug;
     });
 }
 ---
