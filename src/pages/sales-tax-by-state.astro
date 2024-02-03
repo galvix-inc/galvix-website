@@ -27,7 +27,7 @@ const states = await fetch(url + "?" + query).then((response) =>
   response.json()
 );
 ---
-<BaseLayout title={pageData.data.attributes.seoConfig.pageTitle} metaTitle={pageData.data.attributes.seoConfig.metaTitle} metaDescription={pageData.data.attributes.seoConfig.metaDescription} norobots={pageData.data.attributes.seoConfig.noRobots}>
+<BaseLayout title={pageData.data.attributes.seoConfig.pageTitle} metaTitle={pageData.data.attributes.seoConfig.metaTitle} metaDescription={pageData.data.attributes.seoConfig.metaDescription} norobots>
   
   <!-- Section 1: 2 column Hero -->
   <div class="relative pt-24 sm:pt-32">
