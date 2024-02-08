@@ -1,0 +1,83 @@
+---
+import qs from 'qs';
+import { marked } from "marked";
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CTABlockSEOPages from '../../../components/content-blocks/CTABlockSEOPages.astro';
+import Handlebars from "handlebars";
+
+export async function getStaticPaths() {
+  let url = import.meta.env.STRAPI_URL + "/api/counties";
+  const query = qs.stringify({
+    populate: '*',
+    sort: ['name:asc'],
+    pagination: {
+      "start": 0,
+      "limit": 100
+    }
+    });
+
+  const data = await fetch(url + "?" + query).then(response => response.json());
+  return data.data.map((county) => {
+    return {
+      params: { slug: county.attributes.slug },
+      props: { county },
+    };
+  });
+}
+
+const { county } = Astro.props;
+
+// fetch the template for the FAQ section
+let url = import.meta.env.STRAPI_URL + "/api/templates";
+let query = qs.stringify({
+    filters: {
+        slug: {
+            $eq: "county-sales-tax-guide",
+        }
+    }
+});
+const templateData = await fetch(url + "?" + query).then((response) =>
+  response.json()
+);
+
+// generate the FAQ by combining the CMS data and the template
+Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+Handlebars.registerHelper('formatAsNumber', function (aNumber) {
+    return aNumber.toLocaleString()
+});
+
+const template = Handlebars.compile(templateData.data[0].attributes.content);
+const faq = template(county.attributes);
+const title = `${county.attributes.name} County, ${county.attributes.jurisdiction.data.attributes.name} Sales Tax Rate (2024) - Galvix`;
+const metaTitle = title;
+const metaDescription = `${county.attributes.name}, ${county.attributes.jurisdiction.data.attributes.name} sales and use tax ranges from ${county.attributes.totalTaxMin * 100}-${county.attributes.totalTaxMax * 100}%. Here is a detailed guide on State and Local Sales Tax in ${county.attributes.name} County, ${county.attributes.jurisdiction.data.attributes.name} for 2024.`;
+
+---
+<BaseLayout {title} {metaTitle} {metaDescription}>
+     <!-- Section 1: Hero -->
+     <!-- <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
+        <div class="text-center mb-16">
+          <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{county.attributes.name}, {county.attributes.jurisdiction.data.attributes.name} Sales Tax Rate</h1>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Know everything about sales tax in {county.attributes.name}, {county.attributes.jurisdiction.data.attributes.name} and get updated information to navigate tax regulations effectively.</p>
+          <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a href="/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Automate Sales Tax</a>
+          </div>
+        </div>
+    </div> -->
+
+    <!-- Main Content -->
+    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-32 lg:px-8">
+        <!-- <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Frequently Asked Questions</h2> -->
+        <div class="mt-10 lg:mt-10">
+            <article class="prose max-w-full w-full my-4">
+                <div class="rich-text" set:html={marked.parse(faq)}  />
+            </article>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <CTABlockSEOPages/>
+</BaseLayout>
+
