@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import stepsData from "../components/avalara-vs-galvix/stepData.json";
+import FAQ from "../components/managed-returns/FAQ";
+import { faqsAvalaraAndGalvix } from "../data/faqs";
+import StepsComponent from "../components/avalara-vs-galvix/stepComponent";
+import Comparison from './../components/avalara-vs-galvix/comparison'
+import Comparison2 from './../components/avalara-vs-galvix/comparison2'
+import Header from '../components/avalara-vs-galvix/header.astro'
+import CompanyLogos from '../components/avalara-vs-galvix/companylogos.astro'
+import WhyGalvix from '../components/avalara-vs-galvix/whyGalvix.astro'
+import FooterCard from '../components/avalara-vs-galvix/footerCard.astro'
+---
+
+<BaseLayout>
+  <div class="bg-white px-6 py-20 lg:px-8">
+    <div class="bg-white">
+      <!-- Header -->
+
+      <main class="isolate">
+        <!-- Hero section -->
+       <Header/>
+
+        <!-- Componay logo -->
+       <CompanyLogos/>
+
+        <!-- comparison section -->
+       <Comparison/>
+        <Comparison2/>
+
+        <!-- Know why galvix -->
+       <WhyGalvix/>
+
+        <!-- Switch to  galvix -->
+        <div class="bg-white py-8 sm:pb-14">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:max-w-none">
+              <div class="text-center">
+                <h2
+                  class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                >
+                  Switch to Galvix in 3 simple steps
+                </h2>
+              </div>
+              <StepsComponent stepsData={stepsData} />
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+
+        <FAQ client:visible faqs={faqsAvalaraAndGalvix} />
+
+        <!-- Ending card  -->
+
+        <FooterCard/>
+      </main>
+
+      <!-- Footer -->
+    </div>
+  </div>
+</BaseLayout>
