@@ -3,7 +3,7 @@ import React from "react";
 function Comparison2() {
   const comparisonData = [
     {
-      imageUrl: "/images/avalara-vs-galvix/comparison1.svg",
+      imageUrl: "/images/avalara-alternative/comparison1.svg",
       title: "File accurate sales taxes, no matter what",
       details: [
         {
@@ -19,7 +19,7 @@ function Comparison2() {
       ],
     },
     {
-      imageUrl: "/images/avalara-vs-galvix/comparison2.svg",
+      imageUrl: "/images/avalara-alternative/comparison2.svg",
       title: "Resolve filing issues promptly",
       details: [
         {
@@ -35,7 +35,7 @@ function Comparison2() {
       ],
     },
     {
-      imageUrl: "/images/avalara-vs-galvix/comparison3.svg",
+      imageUrl: "/images/avalara-alternative/comparison3.svg",
       title: "Flag tax discrepancies at the outset",
       details: [
         {
@@ -51,7 +51,7 @@ function Comparison2() {
       ],
     },
     {
-      imageUrl: "/images/avalara-vs-galvix/comparison4.svg",
+      imageUrl: "/images/avalara-alternative/comparison4.svg",
       title: "Claim monthly tax deductions",
       details: [
         {
@@ -67,7 +67,7 @@ function Comparison2() {
       ],
     },
     {
-      imageUrl: "/images/avalara-vs-galvix/comparison5.svg",
+      imageUrl: "/images/avalara-alternative/comparison5.svg",
       title: "Have all your sales tax info at your fingertips",
       details: [
         {
@@ -87,7 +87,7 @@ function Comparison2() {
 
   const comparisonPricing = [
     {
-      imageUrl: "/images/avalara-vs-galvix/returns-table.svg",
+      imageUrl: "/images/avalara-alternative/returns-table.svg",
       title: "Pay just $75 per return or even less",
       details: [
         {
@@ -181,9 +181,9 @@ function Comparison2() {
                   We charge a flat fee per filing for each state regardless of
                   revenue.
                 </div>
-                <button class="rounded-md mt-8 bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <a href="/get-started" class="text-center rounded-md mt-8 bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
             <div className="flex flex-col w-[50%] my-auto max-md:ml-0 max-md:w-full p-4 ">

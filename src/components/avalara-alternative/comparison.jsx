@@ -6,17 +6,17 @@ function Comparison() {
     {
       title: "Put an end to filing errors, penalties, and notices from the states.",
       description: "Stay on top of your sales tax liability and file accurate returns.",
-      images: ["/images/avalara-vs-galvix/comparison1a.svg", "/images/avalara-vs-galvix/comparison1b.svg"]
+      images: ["/images/avalara-alternative/comparison1a.svg", "/images/avalara-alternative/comparison1b.svg"]
     },
     {
       title: "Stop chasing 20 people and reading 20 articles in vain.",
       description: "Have a tax compliance expert & troubleshooter on standby.",
-      images: ["/images/avalara-vs-galvix/comparison2a.svg", "/images/avalara-vs-galvix/comparison2b.svg"]
+      images: ["/images/avalara-alternative/comparison2a.svg", "/images/avalara-alternative/comparison2b.svg"]
     },
     {
       title: "Stop paying for services you never get.",
       description: "Predict and control monthly sales filing costs",
-      images: ["/images/avalara-vs-galvix/comparison3a.svg", "/images/avalara-vs-galvix/comparison3b.svg"]
+      images: ["/images/avalara-alternative/comparison3a.svg", "/images/avalara-alternative/comparison3b.svg"]
     }
   ];
 

@@ -3,16 +3,16 @@ import React from 'react';
 function Testimonial() {
   const testimonials = [
     {
-      image: "/public/images/avalara-vs-galvix/layer1.svg",
+      image: "/public/images/avalara-alternative/layer1.svg",
       text: "With Avalara, the discrepancies were in many thousands of dollars. The amount paid to the state was different than what was on the draft calculation, and it was different than what was deducted from the bank. And none matched the exact tax liability! With Galvix, everything is accurate and matches to the last dollar.",
-      avatar: "/public/images/avalara-vs-galvix/kshama.svg",
+      avatar: "/public/images/avalara-alternative/kshama.svg",
       name: "Kshama Patel",
       title: "Sr. Accountant, Poster Compliance"
     },
     {
-      image: "/public/images/avalara-vs-galvix/Layer_3.svg",
+      image: "/public/images/avalara-alternative/Layer_3.svg",
       text: "100% on a different spectrum. Avalara was just a frustration to deal with, it was like ‘I don't want to get out of bed in the morning because I know I have to work with these people’. With Galvix I can make a phone call and know that I can have a pleasant conversation that is going to resolve a problem very easily.",
-      avatar: "/public/images/avalara-vs-galvix/masdefenceavatar.svg",
+      avatar: "/public/images/avalara-alternative/masdefenceavatar.svg",
       name: "Placeholder Name",
       title: "< >, MAS Defence"
     },
