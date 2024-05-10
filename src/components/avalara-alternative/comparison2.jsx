@@ -181,7 +181,7 @@ function Comparison2() {
                   We charge a flat fee per filing for each state regardless of
                   revenue.
                 </div>
-                <a href="/get-started" class="text-center rounded-md mt-8 bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <a href="/get-started" className="mx-auto rounded-md mt-8 bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                   Get Started
                 </a>
               </div>
