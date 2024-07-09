@@ -28,11 +28,19 @@ export default function Header() {
           ))}
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
-          <a
+          {/* <a
             href="/get-started"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Get Started
+          </a> */}
+          <a
+            href="https://calendly.com/piyushag1/galvix-intro"
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            Book a Call
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -58,11 +66,19 @@ export default function Header() {
                 alt="Galvix Logo"
               />
             </a>
-            <a
+            {/* <a
               href="/get-started"
               className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Get Started
+            </a> */}
+            <a
+            href="https://calendly.com/piyushag1/galvix-intro"
+            className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+              Book a Call
             </a>
             <button
               type="button"
