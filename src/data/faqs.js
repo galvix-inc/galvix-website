@@ -41,7 +41,7 @@ const faqs = [
         "Getting started is easy - just sign up for our complimentary consultation call, during which we will understand your business and a little bit about your billing/accounting stack. We will then share a service agreement for your review and sign-off. Post that, our onboarding team will set up the Galvix account for you, while connecting to your billing or accounting software and configuring details like your existing tax registration numbers for each state, filing frequencies, etc. Once the account is active (usually takes about a week), no further steps are required from your end. We will prepare and share the draft returns for your review and approval by the 5th of every month. Once we get your approval (latest by the 10th), we will file your tax returns while uploading copies of the acknowledgments and any other documentation to your online account.",
     },
     {
-      "question": "I have a \"question\" that didn’t get \"answer\"ed here. What do I do?",
+      "question": "I have a question that didn’t get answered here. What do I do?",
       "answer": "Contact us at hello@galvix.com or schedule a complimentary consultation with our team here."
     }
     
