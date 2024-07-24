@@ -1,95 +1,61 @@
-<div id="how-it-works" class="overflow-hidden bg-gray-50 py-16 lg:py-24">
-    <div class="relative mx-auto max-w-xl px-6 lg:max-w-7xl lg:px-8">
-  
-      <div class="relative">
-        <h2 class="text-center text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">Galvix is an all-in-one platform for SaaS sales tax compliance</h2>
-        <p class="mx-auto mt-4 max-w-3xl text-center text-xl text-gray-500">Galvix provides comprehensive coverage for US sales tax compliance, including exposure monitoring, tax calculation, and filing services.</p>
+---
+const stepsData = {
+  steps: [
+    {
+      step: 1,
+      heading: "Add your business information",
+      imgSrc: "/images/avalara-vs-galvix/step1.svg",
+      description: "Tell us about your business addresses, employee locations, nature of products sold and any existing jurisdictions where you are registered to collect sales tax"
+    },
+    {
+      step: 2,
+      heading: "Connect your billing systems",
+      imgSrc: "/images/avalara-vs-galvix/step2.svg",
+       description: "Use Galvix's out-of-the-box integrations with popular billing and account systems to automatically fetch sales data."
+    },
+    {
+      step: 3,
+      heading: "Review and approve returns",
+      imgSrc: "/images/avalara-vs-galvix/step3.svg",
+       description: "Review and approve the returns prepared by Galvix and let Galvix file in each jurisdiction for you."
+    }
+  ]
+};
+---
+<div class="bg-white ">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-none">
+      <div class="text-center">
+        <h2
+          class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+        >
+        Start filing your sales tax returns using Galvix in 3 simple steps.
+        </h2>
       </div>
-  
-      <div class="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
-        <div class="relative">
-          <h3 class="text-base font-semibold leading-7 text-indigo-600">STEP 01</h3>
-          <h3 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Connect your systems</h3>
-          <p class="mt-3 text-lg text-gray-500">Easily begin the compliance process with our no-code integrations. Import transactions and employee locations, and map your products to correct tax codes with ease.</p>
-  
+      <dl class="mt-16 grid">
+        <div class="flex gap-5 max-md:flex-col max-md:gap-0">
+          {stepsData.steps.map((step) => (
+            <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full" >
+              <div class="flex flex-col grow px-5 pb-3 max-md:mt-6">
+                <div class="mt-5 text-base font-medium leading-6 text-gray-500">
+                  Step {step.step}
+                </div>
+                <div class="mt-1.5 text-xl font-semibold leading-7 text-gray-900">
+                  {step.heading}
+                </div>
+                <img loading="lazy" src={step.imgSrc} alt={`Step ${step.step} Image`} class="mt-5 w-full aspect-[2.78]" />
+                
+                    <span  class="text-base mt-4 text-md leading-6 text-gray-600 pb-2">
+                      {step.description}
+                    </span>
+                  
+                
+              </div>
+            </div>
+          ))}
         </div>
-  
-        <div class="relative -mx-4 mt-10 lg:mt-0" aria-hidden="true">
-          <img class="relative mx-auto" width="490" src="/images/homepage/step01.svg" alt="Connect your systems">
-        </div>
-      </div>
-  
-      <div class="relative mt-12 sm:mt-16 lg:mt-24">
-        <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8">
-          <div class="lg:col-start-2">
-            <h3 class="text-base font-semibold leading-7 text-indigo-600">STEP 02</h3>
-            <h3 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Track your exposure</h3>
-            <p class="mt-3 text-lg text-gray-500">Get immediate insight into your sales tax obligations in jurisdictions with physical offices, remote employees, or customers.</p>
-          </div>
-  
-          <div class="relative -mx-4 mt-10 lg:col-start-1 lg:mt-0">
-            <img class="relative mx-auto" width="490" src="/images/homepage/step02.svg" alt="Track your exposure">
-          </div>
-        </div>
-      </div>
-
-      <div class="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
-        <div class="relative">
-          <h3 class="text-base font-semibold leading-7 text-indigo-600">STEP 03</h3>
-          <h3 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Register instantly</h3>
-          <p class="mt-3 text-lg text-gray-500">Get registered for sales tax in any jurisdiction instantly without navigating complex government websites or forms.</p>
-  
-        </div>
-  
-        <div class="relative -mx-4 mt-10 lg:mt-0" aria-hidden="true">
-          <img class="relative mx-auto" width="490" src="/images/homepage/step03.svg" alt="Register instantly">
-        </div>
-      </div>
-      
-      <div class="relative mt-12 sm:mt-16 lg:mt-24">
-        <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8">
-          <div class="lg:col-start-2">
-            <h3 class="text-base font-semibold leading-7 text-indigo-600">STEP 04</h3>
-            <h3 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Collect in real-time</h3>
-            <p class="mt-3 text-lg text-gray-500">Get the correct sales tax amount automatically added during checkout or invoice creation while ensuring that you always collect the right amount.</p>
-          </div>
-  
-          <div class="relative -mx-4 mt-10 lg:col-start-1 lg:mt-0">
-            <img class="relative mx-auto" width="490" src="/images/homepage/step04.svg" alt="Collect in real-time">
-          </div>
-        </div>
-      </div>
-
-      <div class="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
-        <div class="relative">
-          <h3 class="text-base font-semibold leading-7 text-indigo-600">STEP 05</h3>
-          <h3 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Approve and auto file returns</h3>
-          <p class="mt-3 text-lg text-gray-500">Never worry about missing filing deadlines with our fully managed return preparation, filing, and remittance solution for all US states.</p>
-  
-        </div>
-  
-        <div class="relative -mx-4 mt-10 lg:mt-0" aria-hidden="true">
-          <img class="relative mx-auto" width="490" src="/images/homepage/step05.svg" alt="Approve and auto file returns">
-        </div>
-      </div>
-      
-      <div class="relative mt-12 sm:mt-16 lg:mt-24">
-        <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:items-center lg:gap-8">
-          <div class="lg:col-start-2">
-            <h3 class="text-base font-semibold leading-7 text-indigo-600">STEP 06</h3>
-            <h3 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Simplify reporting</h3>
-            <p class="mt-3 text-lg text-gray-500">Get in-depth insights about the financial health of your business, with our built-in sales tax reconciliation, powerful exposure modeling scenarios, and configurable reports for easy audit readiness.</p>
-          </div>
-  
-          <div class="relative -mx-4 mt-10 lg:col-start-1 lg:mt-0">
-            <img class="relative mx-auto" width="490" src="/images/homepage/step06.svg" alt="Simplify reporting">
-          </div>
-        </div>
-      </div>
-
-
-
-
+      </dl>
     </div>
   </div>
-  
+</div>
+
