@@ -4,26 +4,26 @@ const stepsData = {
     {
       step: 1,
       heading: "Add your business information",
-      imgSrc: "/images/avalara-vs-galvix/step1.svg",
+      imgSrc: "/images/homepage/step1.svg",
       description: "Tell us about your business addresses, employee locations, nature of products sold and any existing jurisdictions where you are registered to collect sales tax"
     },
     {
       step: 2,
       heading: "Connect your billing systems",
-      imgSrc: "/images/avalara-vs-galvix/step2.svg",
+      imgSrc: "/images/homepage/step2.svg",
        description: "Use Galvix's out-of-the-box integrations with popular billing and account systems to automatically fetch sales data."
     },
     {
       step: 3,
       heading: "Review and approve returns",
-      imgSrc: "/images/avalara-vs-galvix/step3.svg",
+      imgSrc: "/images/homepage/step3.svg",
        description: "Review and approve the returns prepared by Galvix and let Galvix file in each jurisdiction for you."
     }
   ]
 };
 ---
 <div class="bg-white ">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl  px-6 lg:px-8 pb-24 ">
     <div class="mx-auto max-w-2xl lg:max-w-none">
       <div class="text-center">
         <h2
@@ -32,7 +32,7 @@ const stepsData = {
         Start filing your sales tax returns using Galvix in 3 simple steps.
         </h2>
       </div>
-      <dl class="mt-16 grid">
+      <dl class="mt-8 grid">
         <div class="flex gap-5 max-md:flex-col max-md:gap-0">
           {stepsData.steps.map((step) => (
             <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full" >
@@ -55,6 +55,45 @@ const stepsData = {
           ))}
         </div>
       </dl>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="mx-auto max-w-7xl  px-6 lg:px-8 ">
+  <div class="sm:mx-8 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+    <div class="m-auto sm:pl-8">
+      <div class="text-left">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          Galvix integrates with popular billing systems and apps
+        </h2>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+    
+      <div class="grid grid-cols-3 gap-4 ">
+        <div class="flex ">
+          <img src="/images/app-logos/stripe.svg"  />
+        </div>
+        <div class="flex ">
+          <img src="/images/app-logos/quickbooks.svg" />
+        </div>
+        <div class="flex ">
+          <img src="/images/app-logos/shopify.svg" />
+        </div>
+        <div class="flex ">
+          <img src="/images/app-logos/big-commerce.svg" />
+        </div>
+        <div class="flex ">
+          <img src="/images/app-logos/business-central.svg"  />
+        </div>
+        <div class="flex ">
+          <img src="/images/app-logos/netsuite.svg" alt="Box 1"  />
+        </div>
+      
+      </div>
     </div>
   </div>
 </div>

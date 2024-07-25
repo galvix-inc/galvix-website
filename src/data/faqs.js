@@ -84,5 +84,80 @@ const faqs = [
         "Yes, Galvix charges $150 to initiate and complete your sales tax registration for any given state.",
     },
   ]
+
+  const faqsHomepage = [
+    {
+      "question": "How is Galvix sales tax filing priced?",
+      "answer": "Galvix costs you $75 to file each return. For example, if there are 10 states with monthly returns and 5 states with quarterly returns, it costs you $75*10 per month and $75*5 per quarter. We also offer volume discounts.",
+      "category": "Pricing"
+    },
+    {
+      "question": "Can you connect with our billing system?",
+      "answer": "Galvix uses APIs of your billing system (e.g. Stripe, Shopify, QuickBooks, etc.) to fetch monthly sales transaction data. When that’s not feasible, it lets you import a spreadsheet of all the monthly transactions.",
+      "category": "Features"
+    },
+    {
+      "question": "How do you ensure the accuracy of sales tax calculations and filing?",
+      "answer": "Galvix relies on its proprietary and regularly updated sales tax engine to calculate tax liability independent of what’s mentioned on your sales invoices. And then it reconciles the same with what your billing system provides. This ensures tax filing accuracy.",
+      "category": "Features"
+    },
+    {
+      "question": "Do you also offer a tax engine to calculate the right amount of tax to add to the invoices?",
+      "answer": "Yes. Galvix offers a tax engine in addition to sales tax filing at $0.2-$0.5 per invoice. But that’s not a requirement for us to file your monthly sales taxes, because Galvix calculates your sales tax liability afresh at the time of tax filing.",
+      "category": "Features"
+    },
+    {
+      "question": "Do you also help with sales tax registrations for different states?",
+      "answer": "Yes. Galvix charges $150 to initiate and complete your sales tax registration for any given state.",
+      "category": "Features"
+    },
+    {
+      "question": "Do you also provide nexus analysis?",
+      "answer": "Yes. Galvix software provides a real-time nexus tracking dashboard with supporting information about physical and economic nexus in each state.",
+      "category": "Features"
+    },
+    {
+      "question": "Are you a CPA? Do you offer accounting or CPA-related services too?",
+      "answer": "No, we only offer sales tax filing and sales tax compliance services.",
+      "category": "Features"
+    },
+    {
+      "question": "How long does the initial setup take?",
+      "answer": "It takes 2 to 7 business days to set you up for sales tax filing via Galvix. This includes connecting your billing systems, assigning accurate tax codes to your products, updating your nexus information, and receiving your online tax filing credentials for the state portals.",
+      "category": "Set up, support, and security"
+    },
+    {
+      "question": "What does the monthly sales tax filing process with Galvix look like?",
+      "answer": "The Galvix team prepares monthly returns and notifies you to review and approve them in the Galvix tax filing software. Accordingly, we file the returns on your behalf and upload the acknowledgments for your reference.",
+      "category": "Set up, support, and security"
+    },
+    {
+      "question": "What kind of customer support can I expect from Galvix?",
+      "answer": "Each of us at Galvix, including our founding team, is available over the phone to help you resolve your tax filing issues and concerns, hands-on.",
+      "category": "Set up, support, and security"
+    },
+    {
+      "question": "Are your support execs trained on tax laws and your software?",
+      "answer": "Yes, all our support execs are mandatorily trained for 2 months on state-wise sales tax laws and the Galvix tax filing software.",
+      "category": "Set up, support, and security"
+    },
+    {
+      "question": "Are you a certified sales tax provider with the SST (Streamlined Sales Tax)?",
+      "answer": "We may apply for it if this creates tremendous value for our customers. So far, this hasn't come up as a requirement.",
+      "category": "Set up, support, and security"
+    },
+    {
+      "question": "How do you ensure the security of our business and sales transaction data?",
+      "answer": "Our software comes with robust security features. Plus, we enforce strong contract measures to protect you against security breaches.",
+      "category": "Set up, support, and security"
+    },
+    {
+      "question": "How long has your company been in business? If I choose this solution, I want to be sure it will be around for a while.",
+      "answer": "We serve businesses that have been around for decades. Moreover, Galvix is a self-funded company built out of a passion for solving the pain of sales tax filing for small businesses in the United States.",
+      "category": "Set up, support, and security"
+    }
+  ];
   
-  export { faqs, faqsAvalaraAndGalvix}
+  
+  
+  export { faqs, faqsAvalaraAndGalvix,faqsHomepage}
