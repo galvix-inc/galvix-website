@@ -30,9 +30,9 @@ export default function FAQ({ faqs }) {
           <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900 ">FAQS</h2>
           {Object.entries(groupedFaqs).map(([category, faqs]) => (
             faqs.length > 0 && (
-              <div key={category} className="mt-12">
+              <div key={category} >
                 {category !== 'Uncategorized' && (
-                  <h3 className="text-xl font-semibold leading-8 tracking-tight text-gray-500 ">{category}</h3>
+                  <h3 className="text-xl font-semibold leading-8 tracking-tight text-gray-500 mt-6 ">{category}</h3>
                 )}
                 <dl className=" space-y-6 divide-y divide-gray-900/10">
                   {faqs.map((faq) => (
