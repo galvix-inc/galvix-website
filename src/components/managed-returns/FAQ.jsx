@@ -25,7 +25,7 @@ export default function FAQ({ faqs }) {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-7xl px-6  lg:px-8">
         <div className="mx-auto max-w-7xl ">
           <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900 ">FAQS</h2>
           {Object.entries(groupedFaqs).map(([category, faqs]) => (
