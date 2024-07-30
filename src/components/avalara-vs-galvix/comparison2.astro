@@ -90,8 +90,8 @@ const comparisonPricing = [
 ];
 ---
 
-<div class="bg-white">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="bg-white lg:pb-20">
+  <div class="mx-auto max-w-7xl px-6 ">
     <div class="text-center mb-10">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
         Make your monthly sales tax filing error-free and easy.
@@ -105,7 +105,7 @@ const comparisonPricing = [
         
         class={`flex ${
           index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-        } gap-5 max-md:flex-col max-md:gap-0 sm:gap-2 mt-4`}
+        } gap-5 max-md:flex-col max-md:gap-0 sm:gap-2 mb-4`}
       >
         <div class="flex flex-col md:w-[50%] max-md:ml-0 max-md:w-full p-8">
           <div class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
@@ -118,7 +118,7 @@ const comparisonPricing = [
         </div>
         <div class="flex flex-col w-[50%] my-auto max-md:ml-0 max-md:w-full p-4">
           <div class="flex flex-col text-lg leading-7 text-gray-600">
-            <div class="w-full text-3xl font-bold leading-9 text-gray-900 max-md:max-w-full">
+            <div class="w-full text-2xl font-bold leading-9 text-gray-900 max-md:max-w-full">
               {item.title}
             </div>
             {item.details.map((detail, detailIndex) => (

@@ -13,7 +13,7 @@ import FooterCard from '../components/avalara-vs-galvix/footerCard.astro'
 ---
 
 <BaseLayout>
-  <div class="bg-white px-6 py-20 lg:px-8">
+  <div class="bg-white  py-20 ">
     <div class="bg-white">
       <!-- Header -->
 
@@ -22,7 +22,8 @@ import FooterCard from '../components/avalara-vs-galvix/footerCard.astro'
        <Header/>
 
         <!-- Componay logo -->
-       <CompanyLogos/>
+         <div class="pt-8 lg:pt-16"> <CompanyLogos/></div>
+      
 
         <!-- comparison section -->
        <Comparison/>
@@ -53,7 +54,7 @@ import FooterCard from '../components/avalara-vs-galvix/footerCard.astro'
 
         <!-- Ending card  -->
 
-        <FooterCard/>
+        <div class="px-6 lg:px-8"><FooterCard /></div>
       </main>
 
       <!-- Footer -->
