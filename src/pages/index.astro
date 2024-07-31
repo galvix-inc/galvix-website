@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayoutSimple from "../layouts/BaseLayoutSimple.astro";
 import Hero from "../components/managed-returns/Hero.astro";
 import FAQ from "../components/managed-returns/FAQ.jsx";
 import CompanyLogos from "../components/avalara-vs-galvix/companylogos.astro";
@@ -14,7 +14,7 @@ const metaDescription =
     "Galvix lets you offload the high cost and hassle of sales tax return preparation, filing, and remittance - with a 100% done-for-you service.";
 ---
 
-<BaseLayout
+<BaseLayoutSimple
     title={pageTitle}
     metaTitle={metaTitle}
     metaDescription={metaDescription}
@@ -24,16 +24,5 @@ const metaDescription =
     <WhyGalvixCards />
     <Steps />
     <div class="mt-24"><FAQ client:visible faqs={faqsHomepage} /></div>
-    
     <div class="px-6 lg:px-12 py-24"><FooterCard /></div>
-    
-
-    <!-- <Hero/>
-    <Steps/>
-    <Solution/>
-    <Features/>
-    <Support/>
-    
-    <FAQ client:visible faqs={faqs}/>
-    <CTA/> -->
-</BaseLayout>
+</BaseLayoutSimple>
