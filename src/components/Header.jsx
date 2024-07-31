@@ -3,8 +3,8 @@ import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Benefits', href: import.meta.env.BASE_URL + "#benefits" },
-  { name: 'How it works', href: import.meta.env.BASE_URL + "#how-it-works" },
+  
+  { name: 'Avalara vs Galvix Comparison', href: import.meta.env.BASE_URL + "avalara-vs-galvix" },
   { name: 'Resources', href: '/resources' },
 ]
 
