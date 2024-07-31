@@ -3,9 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import stepsData from "../components/avalara-vs-galvix/stepData.json";
 import FAQ from "../components/managed-returns/FAQ";
 import { faqsAvalaraAndGalvix } from "../data/faqs";
-import StepsComponent from "../components/avalara-vs-galvix/stepComponent";
-import Comparison from './../components/avalara-vs-galvix/comparison'
-import Comparison2 from './../components/avalara-vs-galvix/comparison2'
+import StepsComponent from "../components/avalara-vs-galvix/stepComponent.astro";
+import Comparison from '../components/avalara-vs-galvix/comparison.astro'
+import Comparison2 from '../components/avalara-vs-galvix/comparison2.astro'
 import Header from '../components/avalara-vs-galvix/header.astro'
 import CompanyLogos from '../components/avalara-vs-galvix/companylogos.astro'
 import WhyGalvix from '../components/avalara-vs-galvix/whyGalvix.astro'
@@ -13,16 +13,17 @@ import FooterCard from '../components/avalara-vs-galvix/footerCard.astro'
 ---
 
 <BaseLayout>
-  <div class="bg-white px-6 py-20 lg:px-8">
+  <div class="bg-white ">
     <div class="bg-white">
       <!-- Header -->
 
-      <main class="isolate">
+      <main class="isolate overflow-hidden">
         <!-- Hero section -->
        <Header/>
 
         <!-- Componay logo -->
-       <CompanyLogos/>
+         <div class="pt-8 lg:pt-24"> <CompanyLogos/></div>
+      
 
         <!-- comparison section -->
        <Comparison/>
@@ -32,7 +33,7 @@ import FooterCard from '../components/avalara-vs-galvix/footerCard.astro'
        <WhyGalvix/>
 
         <!-- Switch to  galvix -->
-        <div class="bg-white py-8 sm:pb-14">
+        <div class="bg-white pt-24 ">
           <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:max-w-none">
               <div class="text-center">
@@ -48,12 +49,12 @@ import FooterCard from '../components/avalara-vs-galvix/footerCard.astro'
         </div>
 
         <!-- FAQ -->
-
-        <FAQ client:visible faqs={faqsAvalaraAndGalvix} />
+<div class="py-20"><FAQ client:visible faqs={faqsAvalaraAndGalvix} /></div>
+        
 
         <!-- Ending card  -->
 
-        <FooterCard/>
+        <div class="px-6 lg:px-8"><FooterCard /></div>
       </main>
 
       <!-- Footer -->
