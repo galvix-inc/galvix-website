@@ -1,22 +1,44 @@
 ---
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header";
-
-const { title, metaTitle, metaDescription } = Astro.props;
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.astro';
+import Seo from '../components/Seo.astro';
+import siteData from "../data/siteData.json";
+const { title, metaTitle, metaDescription, image, frontmatter, norobots, landingpage } = Astro.props;
+const mixpanelToken = import.meta.env.MIXPANEL_TOKEN;
+const gtmContainerId = import.meta.env.GTM_CONTAINER_ID;
 ---
 
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script is:inline define:vars={{ gtmContainerId }}>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',gtmContainerId);
+  </script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title ? title : 'Default Title'}</title>
-  <meta name="title" content={metaTitle ? metaTitle : 'Default Meta Title'} />
-  <meta name="description" content={metaDescription ? metaDescription : 'Default Meta Description'} />
+  <meta name="" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter"> -->
+  <link rel="stylesheet" href="./src/styles.css">
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="canonical" href={Astro.url} />
+  <title>{title ? title : siteData.title}</title>
+  <Seo {metaTitle} {metaDescription} {image} {frontmatter} {norobots} />
+  
 </head>
-<body>
-    <Header/>
+<body class="w-full">
+
+
+
+{!landingpage && <Header client:load />}
+
   <slot />
-  <Footer />
+
+<Footer {landingpage} />
 </body>
 </html>
