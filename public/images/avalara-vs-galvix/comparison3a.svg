@@ -5,10 +5,8 @@
 <rect x="24" y="24" width="64" height="64" rx="32" fill="#EF4444"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M49.4697 49.4697C49.7626 49.1768 50.2374 49.1768 50.5303 49.4697L56 54.9393L61.4697 49.4697C61.7626 49.1768 62.2374 49.1768 62.5303 49.4697C62.8232 49.7626 62.8232 50.2374 62.5303 50.5303L57.0607 56L62.5303 61.4697C62.8232 61.7626 62.8232 62.2374 62.5303 62.5303C62.2374 62.8232 61.7626 62.8232 61.4697 62.5303L56 57.0607L50.5303 62.5303C50.2374 62.8232 49.7626 62.8232 49.4697 62.5303C49.1768 62.2374 49.1768 61.7626 49.4697 61.4697L54.9393 56L49.4697 50.5303C49.1768 50.2374 49.1768 49.7626 49.4697 49.4697Z" fill="white"/>
 </g>
-<g filter="url(#filter0_dd_312_12375)">
 <rect x="34" y="34" width="44" height="44" rx="22" fill="#EF4444"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M49.4697 49.4697C49.7626 49.1768 50.2374 49.1768 50.5303 49.4697L56 54.9393L61.4697 49.4697C61.7626 49.1768 62.2374 49.1768 62.5303 49.4697C62.8232 49.7626 62.8232 50.2374 62.5303 50.5303L57.0607 56L62.5303 61.4697C62.8232 61.7626 62.8232 62.2374 62.5303 62.5303C62.2374 62.8232 61.7626 62.8232 61.4697 62.5303L56 57.0607L50.5303 62.5303C50.2374 62.8232 49.7626 62.8232 49.4697 62.5303C49.1768 62.2374 49.1768 61.7626 49.4697 61.4697L54.9393 56L49.4697 50.5303C49.1768 50.2374 49.1768 49.7626 49.4697 49.4697Z" fill="white"/>
-</g>
 <rect x="86.3833" y="50.3833" width="283.233" height="55.2333" fill="white"/>
 <rect x="86.3833" y="50.3833" width="283.233" height="55.2333" stroke="#E5E7EB" stroke-width="0.766667"/>
 <rect x="109.25" y="71.25" width="9" height="8.25" fill="white"/>
@@ -54,22 +52,6 @@
 </g>
 <path d="M0.383333 12C0.383333 5.58429 5.58429 0.383333 12 0.383333H455.617V369.617H12C5.5843 369.617 0.383333 364.416 0.383333 358V12Z" stroke="#F3F4F6" stroke-width="0.766667"/>
 <defs>
-<filter id="filter0_dd_312_12375" x="24.8" y="32.4667" width="62.4" height="62.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feMorphology radius="1.53333" operator="erode" in="SourceAlpha" result="effect1_dropShadow_312_12375"/>
-<feOffset dy="3.06667"/>
-<feGaussianBlur stdDeviation="2.3"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_312_12375"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feMorphology radius="2.3" operator="erode" in="SourceAlpha" result="effect2_dropShadow_312_12375"/>
-<feOffset dy="7.66667"/>
-<feGaussianBlur stdDeviation="5.75"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-<feBlend mode="normal" in2="effect1_dropShadow_312_12375" result="effect2_dropShadow_312_12375"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_312_12375" result="shape"/>
-</filter>
 <clipPath id="clip0_312_12375">
 <path d="M0 12C0 5.37258 5.37258 0 12 0H456V370H12C5.37259 370 0 364.627 0 358V12Z" fill="white"/>
 </clipPath>
