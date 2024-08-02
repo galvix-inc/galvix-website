@@ -1,61 +1,30 @@
 ---
-const stepsData = {
-  steps: [
-    {
-      step: 1,
-      heading: "Add your business information",
-      imgSrc: "/images/homepage/step1.svg",
-      description: "Tell us about your business addresses, employee locations, nature of products sold and any existing jurisdictions where you are registered to collect sales tax"
-    },
-    {
-      step: 2,
-      heading: "Connect your billing systems",
-      imgSrc: "/images/homepage/step2.svg",
-       description: "Use Galvix's out-of-the-box integrations with popular billing and account systems to automatically fetch sales data."
-    },
-    {
-      step: 3,
-      heading: "Review and approve returns",
-      imgSrc: "/images/homepage/step3.svg",
-       description: "Review and approve the returns prepared by Galvix and let Galvix file in each jurisdiction for you."
-    }
-  ]
-};
+
+const { steps } = Astro.props.stepsData;
 ---
-<div class="bg-white ">
-  <div class="mx-auto max-w-7xl  px-6 lg:px-8 pb-20 ">
-    <div class="mx-auto max-w-2xl lg:max-w-none">
-      <div class="text-center">
-        <h2
-          class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-        >
-        Start filing your sales tax returns using Galvix in 3 simple steps.
-        </h2>
-      </div>
-      <dl class="lg:mt-8 mt-6 grid">
-        <div class="flex gap-5 max-md:flex-col max-md:gap-0">
-          {stepsData.steps.map((step) => (
-            <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full" >
-              <div class="flex flex-col grow  pb-3 max-md:mt-6">
-                <div class="mt-2 text-base font-medium leading-6 text-gray-500">
-                  Step {step.step}
-                </div>
-                <div class="mt-1.5 text-xl font-semibold leading-7 text-gray-900">
-                  {step.heading}
-                </div>
-                <img loading="lazy" src={step.imgSrc} alt={`Step ${step.step} Image`} class="mt-5 w-full aspect-[2.78]" />
-                
-                    <span  class="text-base mt-4 text-md leading-6 text-gray-600 pb-2">
-                      {step.description}
-                    </span>
-                  
-                
-              </div>
-            </div>
-          ))}
+
+<dl class=" grid">
+  <div class="flex gap-5 max-md:flex-col max-md:gap-0">
+    {steps.map((step) => (
+      <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full" >
+        <div class="flex flex-col grow  mt-8">
+          
+          <div class="mt-2 text-base  leading-6 text-indigo-600">
+            Step {step.step}
+          </div>
+          <div class="mt-1.5 text-xl font-semibold leading-7 text-gray-900">
+            {step.heading}
+          </div>
+          <img loading="lazy" src={step.imgSrc} alt={`Step ${step.step} Image`} class="mt-5 w-full aspect-[2.78]" />
+          <ul class="mt-4 ml-2 list-disc list-inside">
+            {step.descriptions.map((description, index) => (
+              <li  class="text-base leading-6 text-gray-600 pb-2">
+                {description}
+              </li>
+            ))}
+          </ul>
         </div>
-      </dl>
-    </div>
+      </div>
+    ))}
   </div>
-  
-</div>
+</dl>
