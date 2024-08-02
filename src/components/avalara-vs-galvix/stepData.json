@@ -4,7 +4,7 @@
         "step": 1,
         "heading": "Add your transactions and products",
         "icon": "CubeIcon",
-        "imgSrc": "/images/avalara-vs-galvix/step1.svg",
+        "imgSrc": "/images/homepage/step1.svg",
         "descriptions": [
           "Connect your billing system",
           "Specify your product categories"
@@ -14,7 +14,7 @@
         "step": 2,
         "heading": "Share your business information",
         "icon": "BuildingStorefrontIcon",
-        "imgSrc": "/images/avalara-vs-galvix/step2.svg",
+        "imgSrc": "/images/homepage/step2.svg",
         "descriptions": [
           "Update your office and employee locations",
           "Share your filing credentials"
@@ -24,7 +24,7 @@
         "step": 3,
         "heading": "Review and approve your returns",
         "icon": "CheckCircleIcon",
-        "imgSrc": "/images/avalara-vs-galvix/step3.svg",
+        "imgSrc": "/images/homepage/step3.svg",
         "descriptions": [
           "Review and approve the prepared returns",
           "Let Galvix file in each jurisdiction for you"

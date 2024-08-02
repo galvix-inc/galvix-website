@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   
-  { name: 'Avalara vs Galvix Comparison', href: import.meta.env.BASE_URL + "avalara-vs-galvix" },
+  // { name: 'Avalara vs Galvix Comparison', href: import.meta.env.BASE_URL + "avalara-vs-galvix" },
   { name: 'Resources', href: '/resources' },
 ]
 
