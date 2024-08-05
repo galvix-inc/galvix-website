@@ -2,41 +2,58 @@
 const testimonials = [
   {
     image: "/images/avalara-vs-galvix/layer1.svg",
-    text: "With Galvix, there is transparency at each level with utmost accuracy along with excellent customer service and one-to-one communication, which was a major setback at Avalara. We migrated from Avalara, since we were struggling with data not matching the reports provided to us at multiple levels like tax calculations, draft returns, amount deducted from bank and amount paid to state. Galvix is for sure more reliable than Avalara for me",
+    text: "\"With Galvix, there is transparency at each level with utmost accuracy along with excellent customer service and one-to-one communication, which was a major setback at Avalara. We migrated from Avalara, since we were struggling with data not matching the reports provided to us at multiple levels like tax calculations, draft returns, amount deducted from bank and amount paid to state. Galvix is for sure more reliable than Avalara for me.\"",
     name: "Kshama Patel",
     title: "Sr. Accountant, Poster Compliance"
   },
   {
     image: "/images/avalara-vs-galvix/Layer_3.svg",
-    text: "100% on a different spectrum. Avalara was just a frustration to deal with, it was like ‘I don't want to get out of bed in the morning because I know I have to work with these people’. With Galvix I can make a phone call and know that I can have a pleasant conversation that is going to resolve a problem very easily.",
+    text: "\"100% on a different spectrum. Avalara was just a frustration to deal with, it was like ‘I don't want to get out of bed in the morning because I know I have to work with these people’. With Galvix I can make a phone call and know that I can have a pleasant conversation that is going to resolve a problem very easily.\"",
     name: "Owner",
-    title: "MAS Defence"
+    title: "MAS Defense"
   },
 ];
 ---
+<div class="bg-white ">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-none">
+      <div class="text-center pb-16">
+        <h2
+          class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+        >
+          See what our users are saying about switching to Galvix.
+        </h2>
+      </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  {testimonials.map((testimonial, index) => (
-    <div class="flex flex-col px-3 text-base w-full md:w-auto mt-8">
-      <img
-        loading="lazy"
-        src={testimonial.image}
-        class="aspect-[1.2] w-[58px]"
-        alt={`Testimonial image for ${testimonial.name}`}
-      />
-      <div class="mt-8 leading-6 text-gray-900">
-        {testimonial.text}
-      </div>
-      <div class="flex gap-3.5 mt-8 flex-wrap">
-        <div class="flex flex-col">
-          <div class="font-semibold text-gray-900">
-            {testimonial.name}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {testimonials.map((testimonial, index) => (
+          <div class="flex flex-col px-3 text-base w-full md:w-auto mt-8">
+            <img
+              loading="lazy"
+              src={testimonial.image}
+              class="aspect-[1.2] w-[58px]"
+              alt={`Testimonial image for ${testimonial.name}`}
+            />
+            <div class="mt-8 leading-6 text-gray-900">
+              {testimonial.text}
+            </div>
+            <div class="flex gap-3.5 mt-8 flex-wrap">
+              <div class="flex flex-col">
+                <div class="font-semibold text-gray-900">
+                  {testimonial.name}
+                </div>
+                <div class="mt-1 text-gray-700">
+                  {testimonial.title}
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="mt-1 text-gray-700">
-            {testimonial.title}
-          </div>
-        </div>
+        ))}
       </div>
+
     </div>
-  ))}
+  </div>
 </div>
+
+
+
