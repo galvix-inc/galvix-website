@@ -103,12 +103,12 @@ const faqs = [
     },
     {
       "question": "Do you also offer a tax engine to calculate the right amount of tax to add to the invoices?",
-      "answer": "Yes. Galvix offers a tax engine in addition to sales tax filing at $0.2-$0.5 per invoice. But that’s not a requirement for us to file your monthly sales taxes, because Galvix calculates your sales tax liability afresh at the time of tax filing.",
+      "answer": "Yes. Galvix offers a tax engine that can add the right amount of tax to be collected on every invoice within your billing system. But that’s not a requirement for us to file your returns, as Galvix calculates your sales tax liability afresh at the time of tax filing, irrespective of how you collected the taxes.",
       "category": "Features"
     },
     {
       "question": "Do you also help with sales tax registrations for different states?",
-      "answer": "Yes. Galvix charges $150 to initiate and complete your sales tax registration for any given state.",
+      "answer": "Yes. Galvix charges a one-time fee of $150 to initiate and complete your sales tax registration for any given state.",
       "category": "Features"
     },
     {
@@ -128,12 +128,12 @@ const faqs = [
     },
     {
       "question": "What does the monthly sales tax filing process with Galvix look like?",
-      "answer": "The Galvix team prepares monthly returns and notifies you to review and approve them in the Galvix tax filing software. Accordingly, we file the returns on your behalf and upload the acknowledgments for your reference.",
+      "answer": "The Galvix team prepares monthly returns and notifies you to review and approve them in the Galvix tax filing software. Upon your approval, we file the returns on your behalf and upload the acknowledgments for your reference.",
       "category": "Set up, support, and security"
     },
     {
       "question": "What kind of customer support can I expect from Galvix?",
-      "answer": "Each of us at Galvix, including our founding team, is available over the phone to help you resolve your tax filing issues and concerns, hands-on.",
+      "answer": "Each of us at Galvix, including our founding team, is available to help you resolve your tax filing issues and concerns, hands-on.",
       "category": "Set up, support, and security"
     },
     {
@@ -153,7 +153,7 @@ const faqs = [
     },
     {
       "question": "How long has your company been in business? If I choose this solution, I want to be sure it will be around for a while.",
-      "answer": "We serve businesses that have been around for decades. Moreover, Galvix is a self-funded company built out of a passion for solving the pain of sales tax filing for small businesses in the United States.",
+      "answer": "While we are a relatively young company (founded in 2023), we already serve businesses that have been around for decades. Being a bootstrapped business, we are building a financially sustainable company that thrives on customer feedback and long term value creation, irrespective of investor sentiments.",
       "category": "Set up, support, and security"
     }
   ];
