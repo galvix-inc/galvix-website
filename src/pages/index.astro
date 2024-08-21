@@ -19,14 +19,14 @@ const metaDescription =
     metaTitle={metaTitle}
     metaDescription={metaDescription}
 >
-    <Hero />
-    <CompanyLogos />
-    <WhyGalvixCards />
-    <Steps />
-    <div class="mt-24"><FAQ client:visible faqs={faqsHomepage} /></div>
-    
-    <div class="px-6 lg:px-12 py-24"><FooterCard /></div>
-    
+<main class="isolate overflow-hidden">
+    <Hero id="hero" />
+    <div class="mt-14" ><CompanyLogos /></div>
+    <div ><WhyGalvixCards /></div>
+    <div id="steps" class="pt-24"><Steps /></div>
+    <div class="mt-24" id="FAQs"><FAQ client:visible faqs={faqsHomepage} /></div>
+    <div class="px-6 lg:px-12 py-24" id="footer"><FooterCard /></div>
+</main>
 
     <!-- <Hero/>
     <Steps/>

@@ -1,15 +1,17 @@
-import { useState } from 'react'
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react';
+import { Dialog } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
-  
-  // { name: 'Avalara vs Galvix Comparison', href: import.meta.env.BASE_URL + "avalara-vs-galvix" },
-  { name: 'Resources', href: '/resources' },
-]
+  { name: 'Features', href: '#features' },
+  { name: 'Products', href: '#products' },
+  { name: 'How it works', href: '#steps' },
+  { name: 'Integrations', href: '#integration' },
+  { name: 'FAQs', href: '#FAQs' },
+];
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-sm">
@@ -28,12 +30,6 @@ export default function Header() {
           ))}
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
-          {/* <a
-            href="/get-started"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Get Started
-          </a> */}
           <a
             href="https://calendly.com/piyushag1/galvix-intro"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -66,12 +62,6 @@ export default function Header() {
                 alt="Galvix Logo"
               />
             </a>
-            {/* <a
-              href="/get-started"
-              className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Get Started
-            </a> */}
             <a
             href="https://calendly.com/piyushag1/galvix-intro"
             className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -107,5 +97,5 @@ export default function Header() {
         </Dialog.Panel>
       </Dialog>
     </header>
-  )
+  );
 }

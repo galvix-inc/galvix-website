@@ -18,7 +18,7 @@ const { steps } = Astro.props.stepsData;
           <img loading="lazy" src={step.imgSrc} alt={`Step ${step.step} Image`} class="mt-5 w-full aspect-[2.78]" />
           <ul class="mt-4 ml-2 list-disc list-inside">
             {step.descriptions.map((description, index) => (
-              <li  class="text-base leading-6 text-gray-600 pb-2">
+              <li  class="text-base leading-6 text-gray-600 pb-2" id="integration">
                 {description}
               </li>
             ))}

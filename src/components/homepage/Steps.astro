@@ -2,25 +2,28 @@
 import StepsComponent from '../avalara-vs-galvix/stepComponent.astro'
 import stepsData from "../avalara-vs-galvix/stepData.json";
 ---
-<div class="bg-white pb-24 ">
+<div class="bg-white ">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-none">
       <div class="text-center">
+        <span class="text-indigo-600 font-semibold  leading-6"><h3>How it works</h3></span>
         <h2
-          class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+          class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-1"
         >
-          Switch to Galvix in 3 simple steps
+        Start filing your sales tax returns using Galvix in 3 simple steps.
         </h2>
       </div>
       <StepsComponent stepsData={stepsData} />
     </div>
   </div>
 </div>
-<div class="mx-auto max-w-7xl  px-6 lg:px-8 ">
-  <div class="sm:mx-8 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 sm:gap-y-10 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+<div class="pt-16" >
+<div class="mx-auto max-w-7xl  px-6 lg:px-8 bg-gray-50 " >
+  <div class="sm:mx-8 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 sm:gap-y-10 lg:mx-0 lg:max-w-none lg:grid-cols-2 py-16" >
     <div class="m-auto ">
       <div class="text-left">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <span class="text-indigo-600 font-semibold  leading-6"><h3>Integrations</h3></span>
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-1">
           Galvix integrates with popular billing systems and apps
         </h2>
       </div>
@@ -53,3 +56,4 @@ import stepsData from "../avalara-vs-galvix/stepData.json";
   </div>
 </div>
 
+</div>

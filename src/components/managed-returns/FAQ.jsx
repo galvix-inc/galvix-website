@@ -24,10 +24,11 @@ export default function FAQ({ faqs }) {
   const groupedFaqs = groupByCategory(faqs);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white" >
       <div className="mx-auto max-w-7xl px-6  lg:px-8">
         <div className="mx-auto max-w-7xl ">
-          <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900 ">FAQS</h2>
+        <span class="text-indigo-600 font-semibold  leading-6"><h3>FAQs</h3></span>
+          <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900 mt-1">We are here to help you</h2>
           {Object.entries(groupedFaqs).map(([category, faqs]) => (
             faqs.length > 0 && (
               <div key={category} >
