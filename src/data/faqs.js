@@ -153,7 +153,7 @@ const faqs = [
     },
     {
       "question": "How long has your company been in business? If I choose this solution, I want to be sure it will be around for a while.",
-      "answer": "While we are a relatively young company (founded in 2023), we already serve businesses that have been around for decades. Being a bootstrapped business, we are building a financially sustainable company that thrives on customer feedback and long term value creation, irrespective of investor sentiments.",
+      "answer": "While we are a relatively young company (founded in 2023), we already serve businesses that have been around for decades. As a bootstrapped business, we are building a financially sustainable company that thrives on customer feedback and long-term value creation, irrespective of investor sentiments.",
       "category": "Set up, support, and security"
     }
   ];
