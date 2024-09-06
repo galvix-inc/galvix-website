@@ -86,11 +86,11 @@ const faqs = [
   ]
 
   const faqsHomepage = [
-    {
+    /*{
       "question": "How is Galvix sales tax filing priced?",
       "answer": "Galvix costs you $75 to file each return. For example, if there are 10 states with monthly returns and 5 states with quarterly returns, it costs you $75*10 per month and $75*5 per quarter. We also offer volume discounts.",
       "category": "Pricing"
-    },
+    },*/
     {
       "question": "Can you connect with our billing system?",
       "answer": "Galvix uses APIs of your billing system (e.g. Stripe, Shopify, QuickBooks, etc.) to fetch monthly sales transaction data. When that’s not feasible, it lets you import a spreadsheet of all the monthly transactions.",
@@ -108,7 +108,7 @@ const faqs = [
     },
     {
       "question": "Do you also help with sales tax registrations for different states?",
-      "answer": "Yes. Galvix charges a one-time fee of $150 to initiate and complete your sales tax registration for any given state.",
+      "answer": "Yes. Galvix can initiate and complete your sales tax registration for any given state.",
       "category": "Features"
     },
     {
