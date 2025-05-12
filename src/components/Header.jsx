@@ -31,6 +31,12 @@ export default function Header() {
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
           <a
+            href="https://app.galvix.com"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Login
+          </a>
+          <a
             href="https://calendly.com/piyushag1/galvix-intro"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             target="_blank" 
@@ -50,18 +56,20 @@ export default function Header() {
           </button>
         </div>
       </nav>
+
+      {/* The next section is for the hamburger menu visible on mobile */}
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center gap-x-6">
-            <a href="/" className="-m-1.5 p-1.5">
+            {/* <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Galvix</span>
               <img
                 className="h-8 w-auto"
                 src="/images/galvix-logo.png"
                 alt="Galvix Logo"
               />
-            </a>
+            </a> */}
             <a
             href="https://calendly.com/piyushag1/galvix-intro"
             className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
