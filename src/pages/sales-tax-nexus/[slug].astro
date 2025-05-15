@@ -1,0 +1,191 @@
+---
+import { marked } from "marked";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ResourceCTA from "../../components/resources/ResourceCTA.astro";
+import mysql from 'mysql2/promise';
+
+export async function getStaticPaths() {
+    // Fetch all nexus rules from the database
+
+    const connection = await mysql.createConnection({
+    host: 'galvix-db.cmnu2jrq4xq1.us-east-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'galvix$$3147',
+    database: 'app_db'
+    });
+
+    const [rows] = await connection.execute(`
+        select
+            j.id as id,
+            j.name as name,
+            LOWER(REPLACE(j.name, ' ', '-')) as slug,
+            enr.start_date,
+            enr.sales_threshold,
+            enr.transaction_threshold,
+            enr.match_type,
+            enr.lookback_period,
+            enr.exclude_market_place_transactions,
+            enr.exclude_non_taxable_transactions,
+            enr.exclude_resale_transactions,
+            j.tax_agency_name,
+            j.tax_agency_website_url
+        from economic_nexus_rule enr
+        left join jurisdiction j on enr.jurisdiction_id  = j.id
+        where curdate() between enr.start_date  and enr.end_date
+        and enr.archived = 0
+        group by j.id
+        order by j.name asc
+    `);
+    await connection.end();
+
+    return rows.map(row => ({
+        params: {
+            slug: row.slug,
+        },
+        props: row,
+    }));
+}
+
+const {
+    id,
+    name,
+    slug,
+    start_date,
+    sales_threshold,
+    transaction_threshold,
+    match_type,
+    lookback_period,
+    exclude_market_place_transactions,
+    exclude_non_taxable_transactions,
+    exclude_resale_transactions,
+    tax_agency_name,
+    tax_agency_website_url
+} = Astro.props;
+
+let match_type_text = '';
+
+if(match_type === 'AND') {
+    match_type_text = 'You must meet **both** the sales and transaction thresholds to trigger nexus.';
+} else if(match_type === 'OR') {
+    match_type_text = 'Meeting **either** the sales or transaction threshold triggers nexus.';
+} else {
+    match_type_text = '';
+}
+
+const title = `Sales Tax Nexus Rules in ${name} (2025 Guide)`;
+const metaTitle = title;
+const metaDescription = `Learn when you need to register for sales tax in ${name}. Understand thresholds, marketplace rules, and more.`;
+
+const mdContent = `
+
+If your business sells to customers in **${name}**, you may be required to collect and remit sales tax—even if you're not physically located there. This guide covers when you’re considered to have **nexus in ${name}**, the registration process, and how to stay compliant.
+
+---
+
+## 🔍 What is Sales Tax Nexus?
+
+Sales tax nexus is the connection between a business and a state that triggers the obligation to collect and remit sales tax. Nexus can be **physical** or **economic**.
+
+---
+
+## 🧾 Economic Nexus in ${name}
+
+As of **${start_date}**, ${name} enforces economic nexus laws. You must register and collect sales tax if your business, in the **${lookback_period}**, meets the following thresholds:
+
+- **Sales Threshold:** $${sales_threshold}
+- **Transaction Threshold:** ${transaction_threshold ? transaction_threshold + ' transactions' : 'Not specified'}
+
+${match_type_text}
+
+---
+
+## 🏢 Physical Nexus in ${name}
+
+You have physical nexus in ${name} if your business has:
+
+- Employees, contractors, or agents in NY
+- An office, warehouse, or retail location
+- Inventory stored in ${name} (including through fulfillment centers like Amazon)
+- Attendance at trade shows or events in NY with selling activities
+
+---
+
+## 🔧 What Counts Toward the Economic Threshold?
+
+| Sale Type                    | Included in Threshold? |
+|-----------------------------|------------------------|
+| Sales through Marketplace   | **${exclude_market_place_transactions ? 'No (excluded)' : 'Yes'}**
+| Wholesale/Resale Orders     | **${exclude_resale_transactions ? 'No (excluded)' : 'Yes'}**                |
+| Non-taxable sales           | **${exclude_non_taxable_transactions ? 'No (excluded)' : 'Yes'}**                |
+
+---
+
+## 📝 Registration Requirements
+
+Once you meet the threshold, you must:
+
+1. Register for a ${name} sales tax certificate at the [${tax_agency_name} Portal](${tax_agency_website_url})
+2. Start collecting sales tax on all taxable sales shipped to ${name} customers
+3. File returns and remit collected taxes on the assigned schedule
+
+---
+
+## 📘 Example Scenario
+
+> **Example:** ABC Tools, based in Ohio, made $650,000 in gross sales and 120 transactions of tangible personal property to customers in ${name} over the past 4 quarters. Even without a physical presence, ABC Tools has economic nexus and must register for a sales tax permit in ${name}.
+
+---
+
+## ❓ Frequently Asked Questions
+
+### Does ${name} have a small seller exception?
+
+Yes. If you make less than $500,000 in gross receipts **and** fewer than 100 transactions to NY customers in the last 4 quarters, you are not required to register.
+
+### What if I only sell through Amazon or Etsy?
+
+If the marketplace collects and remits sales tax on your behalf, those sales are **excluded** from your threshold calculation.
+
+### Is the threshold based on taxable sales or total sales?
+
+${name} considers **gross receipts**, including exempt and non-taxable sales.
+
+---
+
+## 🤝 How Galvix Helps
+
+Galvix helps small businesses stay on top of economic nexus across all 50 states. We track your activity, alert you when thresholds are crossed, and simplify the registration and filing process.
+
+✅ Real-time sales tracking  
+✅ Alerts when nearing nexus thresholds  
+✅ Guided registration help  
+✅ Automatic tax calculation and filing
+
+---
+
+## 📚 Related Resources
+
+- [Sales Tax Nexus in California](https://www.galvix.com/sales-tax-nexus/california)
+- [When to Register for Sales Tax in the US](https://www.galvix.com/sales-tax-registration-guide)
+- [Sales Tax Compliance Checklist](https://www.galvix.com/sales-tax-compliance-checklist)
+
+---
+
+*This page is updated regularly. For official guidance, visit the [${name} State Department of Taxation and Finance](https://www.tax.ny.gov).*
+
+
+`;
+
+---
+<BaseLayout {title} {metaTitle} {metaDescription}>
+    <div class="bg-white px-6 py-32 lg:px-8">
+        <div class="mx-auto max-w-3xl text-base leading-7 text-gray-700">
+            <p class="text-base font-semibold leading-7 text-indigo-600">Article</p>
+            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{title}</h1>
+            <article class=" prose max-w-full w-full my-4">
+                <div class="rich-text" set:html={marked.parse(mdContent)}  />
+            </article> 
+        </div>
+    </div>
+    <ResourceCTA/>
+</BaseLayout>
