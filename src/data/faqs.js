@@ -158,6 +158,37 @@ const faqs = [
     }
   ];
   
+  const faqsQuickBooksOnlineIntegration = [
+    {
+      "question": "Is my QuickBooks data secure?",
+      "answer":
+        "Yes, we use industry-standard OAuth 2.0 security protocols to ensure your data is protected. Galvix only accesses the data you authorize, and you can revoke access at any time.",
+    },
+    {
+      "question": "What happens if I disconnect QuickBooks?",
+      "answer":
+        "If you disconnect QuickBooks, Galvix will no longer be able to sync data with your QuickBooks account. Your existing data in Galvix will be preserved, but new invoices won't be sent to QuickBooks.",
+    },
+    {
+      "question": "Can I reconnect QuickBooks later?",
+      "answer":
+        "Yes, you can reconnect your QuickBooks account at any time. Simply go to the Integrations page and click \"Connect to QuickBooks\".",
+    },
+    {
+      "question": "Which browsers are supported?",
+      "answer":
+        "Galvix supports the current versions of Chrome, Firefox, and Microsoft Edge for the best experience with QuickBooks integration.",
+    },
+    {
+      "question": "What kind of customer support can I expect from Galvix?",
+      "answer":
+        "All of us, including our founding team, are available over the phone to help you resolve your tax filing issues and concerns, hands-on.",
+    },
+    {
+      "question": "Do you also help with sales tax registrations for different states?",
+      "answer":
+        "Yes, Galvix charges $150 to initiate and complete your sales tax registration for any given state.",
+    },
+  ]
   
-  
-  export { faqs, faqsAvalaraAndGalvix,faqsHomepage}
+  export { faqs, faqsAvalaraAndGalvix,faqsHomepage,faqsQuickBooksOnlineIntegration}

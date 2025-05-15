@@ -1,0 +1,270 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import stepsData from "../../components/avalara-vs-galvix/stepData.json";
+import FAQ from "../../components/managed-returns/FAQ";
+import { faqsQuickBooksOnlineIntegration } from "../../data/faqs";
+import StepsComponent from "../../components/avalara-vs-galvix/stepComponent.astro";
+import Comparison from "../../components/avalara-vs-galvix/comparison.astro";
+import Comparison2 from "../../components/avalara-vs-galvix/comparison2.astro";
+import CompanyLogos from "../../components/avalara-vs-galvix/companylogos.astro";
+import WhyGalvix from "../../components/avalara-vs-galvix/whyGalvix.astro";
+import FooterCard from "../../components/avalara-vs-galvix/footerCard.astro";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+---
+
+<BaseLayout>
+  <div class="bg-white">
+    <div class="bg-white">
+      <!-- Header -->
+
+      <main class="isolate overflow-hidden">
+        <!-- Hero section -->
+        <div class="relative pt-20 pb-10 lg:pb-0">
+          <div
+            class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+            aria-hidden="true"
+          >
+            <div
+              class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+              style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+            >
+            </div>
+          </div>
+          <div class="flex justify-center py-4">
+            <p
+              class="relative rounded-full px-4 py-1.5 text-sm leading-6 text-gray-600 ring-1 ring-inset ring-gray-900/10 hover:ring-gray-900/20"
+            >
+              <span class="md:inline">Galvix + QuickBooks Online</span>
+            </p>
+          </div>
+          <div class="">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+              <div class="mx-auto max-w-4xl text-center">
+                <h1
+                  class="text-xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                >
+                  Automated Sales Tax Compliance for QuickBooks Online
+                </h1>
+                <div
+                  class="self-stretch text-lg leading-7 text-center text-gray-600 mx-auto my-5"
+                >
+                  <span class="font-semibold text-md"
+                    >Connect Galvix with QuickBooks Online</span
+                  > to automate sales tax calculation, tracking, and filing—accurately
+                  and effortlessly.
+                </div>
+                <div
+                  class="flex flex-col sm:flex-row gap-5 text-md leading-7 text-gray-600 py-5"
+                >
+                  <div class="flex flex-1 gap-4 pr-5">
+                    <div class="flex-1 text-left">
+                      🧾 <span class="font-semibold text-md"
+                        >1-Click Tax Return Filing</span
+                      > in all US states
+                    </div>
+                  </div>
+                  <div class="flex flex-1 gap-4 pr-5">
+                    <div class="flex-1 text-left">
+                      📍 <span class="font-semibold text-md"
+                        >Automated Nexus Tracking</span
+                      > so you never miss a threshold
+                    </div>
+                  </div>
+                  <div class="flex flex-1 gap-4 pr-5">
+                    <div class="flex-1 text-left">
+                      🏛️ <span class="font-semibold text-md"
+                        >State Tax Registrations? 100% Done-For-You</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-1 gap-4 pr-5">
+                    <div class="flex-1 text-left">
+                      ⚡ <span class="font-semibold text-md"
+                        >Real-Time Tax Calculation</span
+                      > on every invoice & credit memo in QuickBooks Online
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                  <a
+                    href="https://calendly.com/piyushag1/galvix-intro"
+                    target="_blank"
+                    class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >Talk to Galvix</a
+                  >
+                </div>
+              </div>
+              <div class="mt-16 flow-root sm:mt-24 px-1 lg:w-full w-[40rem]">
+                <div
+                  class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl"
+                >
+                  <img
+                    src="/images/avalara-vs-galvix/returns-table.svg"
+                    alt="App screenshot"
+                    class="rounded-md shadow-2xl ring-1 ring-gray-900/10 lg:w-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Componay logo -->
+        <div class="pt-8 lg:pt-24">
+          <div class="pb-8 border-b border-gray-200">
+            <div class="mx-auto max-w-7xl">
+              <span
+                class="text-gray-600 text-md flex justify-center text-center pb-6 px-6"
+              >
+                Accountants and business owners like you use Galvix for sales
+                tax automation
+              </span>
+              <div class="max-w-7xl">
+                <div
+                  class="grid grid-cols-4 px-6 items-top my-auto gap-y-10 sm:grid-cols-4 lg:grid-cols-7 lg:gap-x-8"
+                >
+                  <img
+                    class="col-span-1 object-contain self-start"
+                    src="/images/avalara-vs-galvix/layer1.svg"
+                    alt="Layer 1"
+                  />
+                  <img
+                    class="col-span-1 m-auto object-contain self-start"
+                    src="/images/avalara-vs-galvix/infromed_slp.svg"
+                    alt="Informed SL"
+                  />
+                  <img
+                    class="col-span-1 m-auto object-contain self-start"
+                    src="/images/avalara-vs-galvix/Layer_3.svg"
+                    alt="Layer 3"
+                  />
+                  <img
+                    class="col-span-1 m-auto object-contain my-auto self-start mb-[16px]"
+                    src="/images/avalara-vs-galvix/Layer_4.svg"
+                    alt="Layer 4"
+                  />
+
+                  <div class="col-span-4 flex justify-center lg:hidden px-6">
+                    <img
+                      class="max-h-8 m-auto object-contain self-start"
+                      src="/images/avalara-vs-galvix/layer_5.svg"
+                      alt="Layer 5"
+                    />
+                    <img
+                      class="max-h-8 m-auto object-contain self-start"
+                      src="/images/avalara-vs-galvix/layer_6.svg"
+                      alt="Layer 6"
+                    />
+                    <img
+                      class="max-h-8 m-auto object-contain self-start"
+                      src="/images/avalara-vs-galvix/layer_7.svg"
+                      alt="Layer 7"
+                    />
+                  </div>
+
+                  <img
+                    class="col-span-1 m-auto object-contain self-start lg:block hidden"
+                    src="/images/avalara-vs-galvix/layer_5.svg"
+                    alt="Layer 5"
+                  />
+                  <img
+                    class="col-span-1 m-auto object-contain self-start lg:block hidden"
+                    src="/images/avalara-vs-galvix/layer_6.svg"
+                    alt="Layer 6"
+                  />
+                  <img
+                    class="col-span-1 m-auto object-contain self-start lg:block hidden"
+                    src="/images/avalara-vs-galvix/layer_7.svg"
+                    alt="Layer 7"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Switch to  galvix -->
+        <div class="bg-white pt-24">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:max-w-none">
+              <div class="text-center">
+                <h2
+                  class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                >
+                  How it works
+                </h2>
+              </div>
+              <dl class="grid">
+                <div class="flex gap-5 max-md:flex-col max-md:gap-0">
+                  <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+                    <div class="flex flex-col grow mt-8">
+                      <div class="mt-2 text-base leading-6 text-indigo-600">
+                        Step 1
+                      </div>
+                      <div
+                        class="mt-1.5 text-xl font-semibold leading-7 text-gray-900"
+                      >
+                        Connect Your Account
+                      </div>
+                      <div class="mt-4">
+                        <p class="text-base leading-6 text-gray-600 pb-2">
+                          Securely sync your transactions in just a few clicks.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+                    <div class="flex flex-col grow mt-8">
+                      <div class="mt-2 text-base leading-6 text-indigo-600">
+                        Step 2
+                      </div>
+                      <div
+                        class="mt-1.5 text-xl font-semibold leading-7 text-gray-900"
+                      >
+                        Automate Tax Determination
+                      </div>
+                      <div class="mt-4">
+                        <p class="text-base leading-6 text-gray-600 pb-2">
+                          Galvix calculates the correct tax in real-time on every transaction inside QuickBooks.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+                    <div class="flex flex-col grow mt-8">
+                      <div class="mt-2 text-base leading-6 text-indigo-600">
+                        Step 3
+                      </div>
+                      <div
+                        class="mt-1.5 text-xl font-semibold leading-7 text-gray-900"
+                      >
+                        File With One Click
+                      </div>
+                      <div class="mt-4">
+                        <p class="text-base leading-6 text-gray-600 pb-2">
+                          Review and e-file your returns - across all states - without ever leaving Galvix.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="py-20">
+          <FAQ client:visible faqs={faqsQuickBooksOnlineIntegration} />
+        </div>
+
+        <!-- Ending card  -->
+
+        <div class="px-6 lg:px-8"><FooterCard /></div>
+
+        <!-- Footer -->
+      </main>
+    </div>
+  </div>
+</BaseLayout>
