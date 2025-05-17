@@ -3,6 +3,8 @@ import { marked } from "marked";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ResourceCTA from "../../components/resources/ResourceCTA.astro";
 import mysql from 'mysql2/promise';
+import CTABlockSEOPages from '../../components/content-blocks/CTABlockSEOPages.astro';
+import { generateNexusImageForState } from '../../../scripts/generate-nexus-images.js';
 
 export async function getStaticPaths() {
     // Fetch all nexus rules from the database
@@ -11,7 +13,7 @@ export async function getStaticPaths() {
     host: 'galvix-db.cmnu2jrq4xq1.us-east-1.rds.amazonaws.com',
     user: 'admin',
     password: 'galvix$$3147',
-    database: 'app_db'
+    database: 'app_prod_db'
     });
 
     const [rows] = await connection.execute(`
@@ -19,6 +21,8 @@ export async function getStaticPaths() {
             j.id as id,
             j.name as name,
             LOWER(REPLACE(j.name, ' ', '-')) as slug,
+            j.tax_agency_name,
+            j.tax_agency_website_url,
             enr.start_date,
             enr.sales_threshold,
             enr.transaction_threshold,
@@ -27,16 +31,33 @@ export async function getStaticPaths() {
             enr.exclude_market_place_transactions,
             enr.exclude_non_taxable_transactions,
             enr.exclude_resale_transactions,
-            j.tax_agency_name,
-            j.tax_agency_website_url
-        from economic_nexus_rule enr
-        left join jurisdiction j on enr.jurisdiction_id  = j.id
-        where curdate() between enr.start_date  and enr.end_date
-        and enr.archived = 0
+            JSON_ARRAYAGG(ppt.description) as physical_presence_types
+        from jurisdiction j
+        left join economic_nexus_rule enr on (
+            enr.jurisdiction_id  = j.id 
+            and curdate() between enr.start_date  and enr.end_date
+            and enr.archived = 0
+        )
+        left join physical_nexus_rule pnr on (
+            j.id = pnr.jurisdiction_id
+            and curdate() between pnr.start_date  and pnr.end_date
+            and pnr.archived = 0
+        )
+        left join physical_presence_type ppt on (
+            pnr.physical_presence_type_id = ppt.id
+        )
+        where j.type = "state"
+        and j.country = "US"
+        and j.sales_tax_applicable = 1
         group by j.id
         order by j.name asc
     `);
     await connection.end();
+
+    // Trigger image generation for each state during build
+    for (const row of rows) {
+        await generateNexusImageForState(row.slug,row.name);
+    }
 
     return rows.map(row => ({
         params: {
@@ -50,6 +71,8 @@ const {
     id,
     name,
     slug,
+    tax_agency_name,
+    tax_agency_website_url,
     start_date,
     sales_threshold,
     transaction_threshold,
@@ -58,8 +81,8 @@ const {
     exclude_market_place_transactions,
     exclude_non_taxable_transactions,
     exclude_resale_transactions,
-    tax_agency_name,
-    tax_agency_website_url
+    physical_presence_types
+    
 } = Astro.props;
 
 let match_type_text = '';
@@ -72,57 +95,175 @@ if(match_type === 'AND') {
     match_type_text = '';
 }
 
-const title = `Sales Tax Nexus Rules in ${name} (2025 Guide)`;
+// console.log(physical_presence_types);
+// const physical_presence_types_array = JSON.parse(physical_presence_types);
+const physical_presence_types_list = physical_presence_types.map(item => `- ${item}`).join('\n');
+
+
+const currentYear = new Date().getFullYear();
+
+const titleFormats = [
+  (state, year) => `Sales Tax Nexus in ${state} – Thresholds, Compliance Rules & When to Register (${year} Guide)`,
+  (state, year) => `Does Your Business Have Sales Tax Nexus in ${state}? [${year} Guide to Economic & Physical Nexus]`,
+  (state, year) => `Understanding Sales Tax Nexus in ${state} – Economic & Physical Nexus Rules (${year})`,
+  (state, year) => `Sales Tax Nexus in ${state}: Thresholds, Triggers & Compliance Overview (${year})`,
+  (state, year) => `When Does Sales Tax Nexus Apply in ${state}? Key Rules and Thresholds for ${year}`
+];
+
+const metaDescriptionFormats = [
+  (state, year) => `Understand ${state}'s sales tax nexus rules. Learn about ${year} economic thresholds and physical presence triggers.`,
+  (state, year) => `Explore how nexus is established in ${state}, including sales thresholds and physical presence tests in ${year}.`,
+  (state, year) => `A complete ${year} guide to sales tax nexus in ${state}, covering when your business must register and collect tax.`,
+  (state, year) => `Learn what creates sales tax nexus in ${state} and how to stay compliant with economic and physical presence rules.`,
+  (state, year) => `Find out when your business is required to collect sales tax in ${state} based on ${year} nexus laws.`
+];
+
+function getTitle(slug, stateName, year) {
+  const index = slug.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0) % titleFormats.length;
+  return titleFormats[index](stateName, year);
+}
+
+function getMetaDescription(slug, stateName, year) {
+  const index = slug.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0) % metaDescriptionFormats.length;
+  return metaDescriptionFormats[index](stateName, year);
+}
+
+function getMarketplaceExclusionAnswer(stateName, isExcluded) {
+  const intro = isExcluded
+    ? `✅ **Yes**, sales made through a marketplace facilitator are excluded from the threshold calculation in ${stateName}.`
+    : `🚫 **No**, sales made through a marketplace facilitator are **included** in the threshold calculation in ${stateName}.`;
+
+  return `${intro}
+
+A *marketplace facilitator* is a third-party platform — like Amazon, Etsy, Walmart Marketplace, or eBay — that enables sellers to list and sell their products. ${
+    isExcluded
+      ? `In most states including ${stateName}, if the facilitator is registered and collects sales tax on your behalf, those sales typically do **not** count toward your economic nexus threshold.`
+      : `In ${stateName}, even if a marketplace collects tax on your behalf, those sales are **still counted** toward your economic nexus threshold.`
+  }
+
+However, if you make **direct sales** (e.g., via your own website) to customers in ${stateName}, those are always considered when determining whether you've triggered nexus.`;
+}
+
+function getResaleExclusionAnswer(stateName, isExcluded) {
+  const intro = isExcluded
+    ? `✅ **Yes**, resale or wholesale transactions are excluded from the economic threshold in ${stateName}.`
+    : `🚫 **No**, resale or wholesale transactions are **included** in the economic threshold in ${stateName}.`;
+
+  return `${intro}
+
+*Resale transactions* occur when you sell goods to another business that intends to resell them, often under a resale certificate. Some states exclude these sales when calculating economic nexus because the end buyer is expected to handle the tax obligation.
+
+${
+  isExcluded
+    ? `In ${stateName}, these exempt sales do not push you closer to the nexus threshold — but you must maintain valid resale certificates to support the exclusion.`
+    : `In ${stateName}, resale and wholesale transactions are included in the nexus threshold even if they are exempt from tax. Be sure to track these sales when determining compliance obligations.`
+}`;
+}
+
+function getNonTaxableExclusionAnswer(stateName, isExcluded) {
+  const intro = isExcluded
+    ? `✅ **Yes**, non-taxable sales are excluded from the nexus threshold in ${stateName}.`
+    : `🚫 **No**, non-taxable sales are **included** in the nexus threshold in ${stateName}.`;
+
+  return `${intro}
+
+*Non-taxable sales* include transactions involving exempt products or exempt buyers (like nonprofits, government entities, or resale scenarios). Even though no tax is collected, some states still count these sales toward the economic nexus threshold.
+
+${
+  isExcluded
+    ? `In ${stateName}, these sales are excluded from threshold calculations — but documentation must be maintained to prove their exempt status.`
+    : `In ${stateName}, non-taxable sales are counted toward the economic nexus threshold. That means even exempt transactions can trigger a registration requirement if you cross the total sales or transaction limits.`
+}`;
+}
+
+const title = getTitle(slug, name, currentYear);
+
 const metaTitle = title;
-const metaDescription = `Learn when you need to register for sales tax in ${name}. Understand thresholds, marketplace rules, and more.`;
+
+const metaDescription = getMetaDescription(slug, name, currentYear);
+
+const image = {
+  url: `/images/nexus/${slug}.png`,
+  mime: 'image/png',
+  width: 1200,
+  height: 630,
+  alt: `Sales Tax Nexus Guide for ${name} – Galvix`
+};
 
 const mdContent = `
 
 If your business sells to customers in **${name}**, you may be required to collect and remit sales tax—even if you're not physically located there. This guide covers when you’re considered to have **nexus in ${name}**, the registration process, and how to stay compliant.
 
+![Sales Tax Nexus Guide for ${name}](/images/nexus/${slug}.png)
+
 ---
 
 ## 🔍 What is Sales Tax Nexus?
 
-Sales tax nexus is the connection between a business and a state that triggers the obligation to collect and remit sales tax. Nexus can be **physical** or **economic**.
+**Sales tax nexus** is the level of connection between a business and a state that legally requires the business to **collect and remit sales tax** on sales made to customers in that state.
+
+There are two primary types of nexus:
+
+- **Physical Nexus**: This occurs when a business has a **physical presence** in a state — such as an office, warehouse, retail location, inventory, or employees. Even a remote employee or temporary sales rep can trigger physical nexus in some states.
+
+- **Economic Nexus**: Introduced after the 2018 *South Dakota v. Wayfair* decision, economic nexus is based on **sales activity alone** — typically measured by the **dollar amount of sales** or **number of transactions** into a state, regardless of physical presence.
+
+Once a business has nexus in a state, it must register with the state’s tax agency, collect the correct amount of sales tax on taxable transactions, and file regular returns.
 
 ---
 
-## 🧾 Economic Nexus in ${name}
+## 🧾 Does ${name} have economic nexus rules?
 
-As of **${start_date}**, ${name} enforces economic nexus laws. You must register and collect sales tax if your business, in the **${lookback_period}**, meets the following thresholds:
+Yes. As of ${new Date(start_date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })}, ${name} enforces economic nexus laws requiring out-of-state sellers to collect and remit sales tax if they exceed the defined thresholds.
 
-- **Sales Threshold:** $${sales_threshold}
-- **Transaction Threshold:** ${transaction_threshold ? transaction_threshold + ' transactions' : 'Not specified'}
+---
+
+## 📊 What are the economic nexus thresholds in ${name}?
+
+You must register and collect sales tax in ${name} if, during the ${lookback_period}, your business meets the following thresholds:
+
+- **Sales Threshold:** $${sales_threshold.toLocaleString('en', {useGrouping:true})}
+- **Transaction Threshold:** ${transaction_threshold ? transaction_threshold.toLocaleString('en', {useGrouping:true}) + ' transactions' : 'Not specified'}
 
 ${match_type_text}
 
 ---
 
-## 🏢 Physical Nexus in ${name}
+## 🏬 Are marketplace sales excluded from the economic threshold in ${name}?
 
-You have physical nexus in ${name} if your business has:
-
-- Employees, contractors, or agents in NY
-- An office, warehouse, or retail location
-- Inventory stored in ${name} (including through fulfillment centers like Amazon)
-- Attendance at trade shows or events in NY with selling activities
+${getMarketplaceExclusionAnswer(name, exclude_market_place_transactions)}
 
 ---
 
-## 🔧 What Counts Toward the Economic Threshold?
+## 🔁 Are wholesale or resale transactions excluded from the economic threshold in ${name}?
 
-| Sale Type                    | Included in Threshold? |
-|-----------------------------|------------------------|
-| Sales through Marketplace   | **${exclude_market_place_transactions ? 'No (excluded)' : 'Yes'}**
-| Wholesale/Resale Orders     | **${exclude_resale_transactions ? 'No (excluded)' : 'Yes'}**                |
-| Non-taxable sales           | **${exclude_non_taxable_transactions ? 'No (excluded)' : 'Yes'}**                |
+${getResaleExclusionAnswer(name, exclude_resale_transactions)}
+
+--- 
+
+## 🚫💵 Are non-taxable or exempt sales excluded from the economic threshold in ${name}?
+
+${getNonTaxableExclusionAnswer(name, exclude_resale_transactions)}
 
 ---
 
-## 📝 Registration Requirements
+## 🏢 What types of physical presence trigger sales tax nexus in ${name}?
 
-Once you meet the threshold, you must:
+You have a physical nexus in ${name} if your business has any of the following in the state:
+
+${physical_presence_types_list}
+
+Even if your business is not based in ${name}, any of the above may create a tax obligation.
+
+---
+
+## 📝 How do I register for sales tax in ${name}?
+
+Once you meet either the economic nexus or physical nexus threshold, you must:
 
 1. Register for a ${name} sales tax certificate at the [${tax_agency_name} Portal](${tax_agency_website_url})
 2. Start collecting sales tax on all taxable sales shipped to ${name} customers
@@ -130,55 +271,35 @@ Once you meet the threshold, you must:
 
 ---
 
-## 📘 Example Scenario
+## 📅 How often do I need to file returns in ${name}?
 
-> **Example:** ABC Tools, based in Ohio, made $650,000 in gross sales and 120 transactions of tangible personal property to customers in ${name} over the past 4 quarters. Even without a physical presence, ABC Tools has economic nexus and must register for a sales tax permit in ${name}.
-
----
-
-## ❓ Frequently Asked Questions
-
-### Does ${name} have a small seller exception?
-
-Yes. If you make less than $500,000 in gross receipts **and** fewer than 100 transactions to NY customers in the last 4 quarters, you are not required to register.
-
-### What if I only sell through Amazon or Etsy?
-
-If the marketplace collects and remits sales tax on your behalf, those sales are **excluded** from your threshold calculation.
-
-### Is the threshold based on taxable sales or total sales?
-
-${name} considers **gross receipts**, including exempt and non-taxable sales.
+${name} assigns a filing frequency (monthly, quarterly, annually, others) based on your taxable sales volume. This will be confirmed during the registration process.
 
 ---
 
-## 🤝 How Galvix Helps
+### 🧭 What’s the easiest way to track sales tax nexus and stay compliant in ${name} and other states?
 
-Galvix helps small businesses stay on top of economic nexus across all 50 states. We track your activity, alert you when thresholds are crossed, and simplify the registration and filing process.
+Tracking sales tax nexus across multiple states can be time-consuming and error-prone, especially as **economic and physical nexus rules vary by state and change frequently**. Businesses often struggle to know when they’ve triggered nexus in a new state, what steps to take next, and how much they may owe.
 
-✅ Real-time sales tracking  
-✅ Alerts when nearing nexus thresholds  
-✅ Guided registration help  
-✅ Automatic tax calculation and filing
+The **Galvix Nexus Tracker** solves this problem by automatically monitoring your sales activity and compliance risk in **${name} and all other U.S. states**.
 
----
+By connecting directly to platforms like **QuickBooks Online**, **Stripe**, **Shopify**, **NetSuite** and others, Galvix analyzes your transaction data and compares it against each state’s **nexus thresholds**. It identifies where you may have **established nexus** — or are getting close — and alerts you in time to take action.
 
-## 📚 Related Resources
+You’ll get:
+- Automated alerts when nexus thresholds are approached or exceeded  
+- Detailed reports showing **why and when nexus was triggered**  
+- Estimated **tax liability exposure** for states where registration is overdue
 
-- [Sales Tax Nexus in California](https://www.galvix.com/sales-tax-nexus/california)
-- [When to Register for Sales Tax in the US](https://www.galvix.com/sales-tax-registration-guide)
-- [Sales Tax Compliance Checklist](https://www.galvix.com/sales-tax-compliance-checklist)
+Looking to simplify nexus tracking and sales tax compliance? [**Contact Galvix**](https://calendly.com/piyushag1/galvix-intro) to see how we can help you stay ahead of your obligations.
 
 ---
 
-*This page is updated regularly. For official guidance, visit the [${name} State Department of Taxation and Finance](https://www.tax.ny.gov).*
-
-
+*This page is updated regularly. For official guidance, visit the [${tax_agency_name} website](${tax_agency_website_url}).*
 `;
 
 ---
-<BaseLayout {title} {metaTitle} {metaDescription}>
-    <div class="bg-white px-6 py-32 lg:px-8">
+<BaseLayout {title} {metaTitle} {metaDescription} {image}>
+    <div class="bg-white px-6 py-24 lg:px-8">
         <div class="mx-auto max-w-3xl text-base leading-7 text-gray-700">
             <p class="text-base font-semibold leading-7 text-indigo-600">Article</p>
             <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{title}</h1>
@@ -187,5 +308,6 @@ Galvix helps small businesses stay on top of economic nexus across all 50 states
             </article> 
         </div>
     </div>
-    <ResourceCTA/>
+    <!-- CTA -->
+    <CTABlockSEOPages/>
 </BaseLayout>
