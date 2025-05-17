@@ -10,10 +10,10 @@ export async function getStaticPaths() {
     // Fetch all nexus rules from the database
 
     const connection = await mysql.createConnection({
-    host: 'galvix-db.cmnu2jrq4xq1.us-east-1.rds.amazonaws.com',
-    user: 'admin',
-    password: 'galvix$$3147',
-    database: 'app_prod_db'
+    host: import.meta.env.DB_HOST,
+    user: import.meta.env.DB_USER,
+    password: import.meta.env.DB_PASSWORD,
+    database: import.meta.env.DB_DATABASE,
     });
 
     const [rows] = await connection.execute(`
